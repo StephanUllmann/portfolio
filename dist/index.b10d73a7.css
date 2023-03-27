@@ -1,3 +1,55 @@
+@font-face {
+  font-family: ralewaythin;
+  src: url("raleway-variablefont_wght-webfont.563656bc.woff2") format("woff2"), url("raleway-variablefont_wght-webfont.64d4fadb.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: righteousregular;
+  src: url("righteous-regular-webfont.14f0e72f.woff2") format("woff2"), url("righteous-regular-webfont.71b50861.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body, :link {
+  color: var(--color-font);
+  font-family: ralewaythin, sans-serif;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-font);
+  font-family: righteousregular;
+}
+
+:root {
+  --color-bg: #fef8dd;
+}
+
+.theme--light {
+  --color-bg: #fef8dd;
+  --color-font: #010722;
+}
+
+.theme--dark {
+  --color-bg: #010722;
+  --color-font: #fef8dd;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: var(--color-bg);
+}
 
 /*# sourceMappingURL=index.b10d73a7.css.map */

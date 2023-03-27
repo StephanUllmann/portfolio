@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "ralewaythin";
+  src: url("../assets/fonts/raleway-variablefont_wght-webfont.woff2")
+      format("woff2"),
+    url("../assets/fonts/raleway-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "righteousregular";
+  src: url("../assets/fonts/righteous-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/righteous-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,
+*:link {
+  font-family: "ralewaythin", sans-serif;
+  color: var(--color-font);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "righteousregular";
+  color: var(--color-font);
+}

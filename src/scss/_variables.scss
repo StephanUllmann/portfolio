@@ -1,0 +1,15 @@
+@use "typography" as *;
+
+:root {
+  --color-bg: rgba(254, 248, 221);
+}
+
+.theme--light {
+  --color-bg: rgba(254, 248, 221);
+  --color-font: #010722;
+}
+
+.theme--dark {
+  --color-bg: #010722;
+  --color-font: rgba(254, 248, 221);
+}
