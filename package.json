@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "A protfolio: Stephan Ullmann - jr. Web Developer",
+  "scripts": {
+    "watch:sass": "node-sass ./src/scss/main.scss ./src/css/style.css -w",
+    "watch:ts": "tsc -w",
+    "devserver": "live-server",
+    "start": "parcel ./src/index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
+  },
+  "keywords": [
+    "portfolio",
+    "scss",
+    "ts"
+  ],
+  "author": "Stephan Ullmann",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^8.0.0",
+    "npm-run-all": "^4.1.5",
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.8.3"
+  }
+}
