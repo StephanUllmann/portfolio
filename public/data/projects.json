@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "title": "SightSeeker",
+    "description": "Bootcamp Final Project: A social map app to plan your next journey together with your friends.",
+    "techStack": ["React", "CSS3", "Mapbox", "Express", "Socket.io", "MongoDB"],
+    "coAuthors": [
+      {
+        "name": "Puritama Toro Benavides",
+        "links": ["https://www.linkedin.com/in/puritama/"]
+      },
+      {
+        "name": "Adam Nagy",
+        "links": ["https://www.linkedin.com/in/adam-nagy3/"]
+      },
+      {
+        "name": "Miroslav Ljubičić",
+        "links": ["https://www.linkedin.com/in/miroslav-ljubicic-munich/"]
+      }
+    ],
+    "github": {
+      "front": "https://github.com/AdamN89/SightSeekerFront",
+      "back": "https://github.com/Parimaru/SightSeekerBackend"
+    },
+    "deployment": "https://sightseeker.netlify.app/",
+    "screenshots": [
+      "portfolio/SightSeeker-0_ifxv5y",
+      "portfolio/SightSeeker-1_xlhf1g",
+      "portfolio/SightSeeker-2_kiotr3",
+      "portfolio/SightSeeker-3_aqzktw",
+      "portfolio/SightSeeker-4_tlyrtm",
+      "portfolio/SightSeeker-5_jkvg1r",
+      "portfolio/SightSeeker-6_vuivgp",
+      "portfolio/SightSeeker-7_sjcxo2"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "PokeFight",
+    "description": "Bootcamp Project: Browse Pokemons, fight and collect them all!",
+    "techStack": ["React", "TailwindCSS", "Express", "MongoDB"],
+    "coAuthors": [
+      {
+        "name": "Miroslav Ljubičić",
+        "links": ["https://www.linkedin.com/in/miroslav-ljubicic-munich/"]
+      },
+      {
+        "name": "Mohammad Awais Rana",
+        "links": ["https://www.linkedin.com/in/mohammad-awais-rana/"]
+      },
+      {
+        "name": "Ali Al-Shareefi",
+        "links": ["https://www.linkedin.com/in/ali-alshareefi-242b4b21a/"]
+      }
+    ],
+    "github": {
+      "front": "https://github.com/mrkyns/pokefight",
+      "back": "https://github.com/StephanUllmann/pokefight_api"
+    },
+    "deployment": "https://wbs-pokefight.netlify.app/",
+    "screenshots": [
+      "portfolio/PokeFight-0_gda6qd",
+      "portfolio/PokeFight-1_bi6vis",
+      "portfolio/PokeFight-2_zf4fer",
+      "portfolio/PokeFight-3_fhie4v",
+      "portfolio/PokeFight-4_dorjmc",
+      "portfolio/PokeFight-5_gb0bn1",
+      "portfolio/PokeFight-6_qnduxa",
+      "portfolio/PokeFight-7_jsjgu4",
+      "portfolio/PokeFight-8_odjvyc"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Simple Chess",
+    "description": "Play chess in hotseat - maybe right here ⬆ Written without any libraries.",
+    "techStack": ["HTML5", "CSS3", "JavaScript"],
+    "coAuthors": [],
+    "github": {
+      "front": "https://github.com/StephanUllmann/simple-chess"
+    },
+    "deployment": "https://stephanullmann.github.io/simple-chess/",
+    "screenshots": [
+      "portfolio/Chess-0_s6zfad",
+      "portfolio/Chess-1_fjbsie",
+      "portfolio/Chess-2_wg2wip"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Pomodoro Timer",
+    "description": "A pomodoro timer - design by ",
+    "external": {
+      "link": "https://www.frontendmentor.io/challenges/pomodoro-app-KBFnycJ6G",
+      "source": "frontendmentor.io"
+    },
+    "techStack": ["HTML5", "SCSS", "JavaScript"],
+    "coAuthors": [],
+    "github": {
+      "front": "https://github.com/StephanUllmann/pomodoro-app"
+    },
+    "deployment": "https://pomodoro-su.netlify.app/",
+    "screenshots": [
+      "portfolio/Pomodoro-0_hbhlgr",
+      "portfolio/Pomodoro-1_t8iath",
+      "portfolio/Pomodoro-2_urtds4",
+      "portfolio/Pomodoro-3_gbbuo3"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Simple Memory",
+    "description": "A memory game. Written without any libraries.",
+    "techStack": ["HTML5", "SCSS", "JavaScript"],
+    "coAuthors": [],
+    "github": {
+      "front": "https://github.com/StephanUllmann/simplememory"
+    },
+    "deployment": "https://stephanullmann.github.io/simplememory/",
+    "screenshots": [
+      "portfolio/Memory-0_w9lrnx",
+      "portfolio/Memory-1_bk8yqf",
+      "portfolio/Memory-2_v2owgp"
+    ]
+  }
+]

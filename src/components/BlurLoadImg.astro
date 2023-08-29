@@ -1,0 +1,13 @@
+---
+const { backgroundImage, css } = Astro.props;
+---
+
+<div
+  class:list={[
+    "blurred-img bg-cover bg-no-repeat blur-[2px] animate-pulse",
+    css,
+  ]}
+  style={{ backgroundImage: `url(${backgroundImage})` }}
+>
+  <slot />
+</div>

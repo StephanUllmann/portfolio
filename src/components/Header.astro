@@ -1,0 +1,30 @@
+---
+import {Icon} from 'astro-icon'
+---
+
+<header class=" w-full    sticky top-0 z-20 bg-secondary-950/25">
+    <div class="h-12 flex lg:max-w-7xl mx-auto justify-between items-center w-full md:px-10 backdrop-blur-[2px]">
+      <div class="flex gap-5">
+        <a href="https://github.com/StephanUllmann" rel="noreferrer noopener" target="_blank">
+          <Icon class="text-text h-7 hover:text-primary-800 transition-all duration-200 hover:scale-110" name="github"/>
+        </a>
+        <a href="https://www.linkedin.com/in/stephan-ullmann/" rel="noreferrer noopener" target="_blank">
+          <Icon class="text-text h-7 hover:text-primary-800 transition-all duration-200 hover:scale-110" name="linkedIn"/>
+        </a>
+        <a href="mailto:stephan.ullmann@posteo.de">
+          <Icon class="text-text h-7 hover:text-primary-800 transition-all duration-200 hover:scale-110" name="email"/>
+        </a>
+      </div>
+      <nav>
+        <ul class="flex gap-5">
+          <li class="list-none hover:text-primary-800 transition-all duration-200 hover:scale-110 flex items-center cursor-pointer">
+          <Icon class="text-text hover:text-primary-800 transition-all duration-200 hover:scale-110 h-5" name="light"/>
+          </li>
+          <li class="list-none hover:text-primary-800 transition-all duration-200 hover:scale-110"><a href="#home">home</a></li>
+          <li class="list-none hover:text-primary-800 transition-all duration-200 hover:scale-110"><a href="#projects">projects</a></li>
+          <li class="list-none hover:text-primary-800 transition-all duration-200 hover:scale-110"><a href="#life">life</a></li>
+          <li class="list-none hover:text-primary-800 transition-all duration-200 hover:scale-110"><a href="#blog">blog</a></li>
+        </ul>
+      </nav>
+    </div>
+</header>

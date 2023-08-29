@@ -1,0 +1,160 @@
+---
+export interface Props {
+  title: string;
+}
+
+// import Header from "../components/Header.jsx";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="scroll-smooth selection:bg-orange-500 selection:text-orange-900 caret-transparent" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link
+      rel="preload"
+      as="font"
+      href="/fonts/Crushed-Regular.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="/fonts/CrusoeText-Regular.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      as="font"
+      href="/fonts/CrusoeText-Bold.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="flex flex-col items-center min-h-screen mx-auto overflow-x-hidden bg-ground bg-blend-saturation bg-radial-noise from-ground via-ground to-black text-text font-body"
+    data-theme="dark"
+  >
+    <Header  />
+    <main class="w-full px-3 lg:max-w-7xl md:px10" 
+      >
+
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  @tailwind utilities;
+  @layer utilities {
+    .triangle-clip {
+      clip-path: polygon(0 0, 100% 55%, 0 100%);
+    }
+    .no-clip {
+      clip-path: none;
+    }
+    .rev-triangle-clip {
+      clip-path : polygon(0 0, 100% 0, 100% 100%, 0 62%);
+    }
+    .text-shadow {
+      text-shadow: #f0fdfa55 2px 3px 5px;
+    }
+    .text-shadow-distinct {
+      text-shadow: #f0fdfa55 7px 3px 0px;
+    }
+    .radial-gradient-fade {
+      background-image: radial-gradient(circle, #1a1f265d, #1d242d43 50%, transparent 70%);
+    }
+    .radial-gradient-transparent {
+      background-image: radial-gradient(circle, #33415520, #33415511 33%, transparent 60%);
+    }
+  }
+
+  @font-face {
+    font-family: Crushed;
+    src: url("/fonts/Crushed-Regular.woff2");
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: Crusoe;
+    src: url("/fonts/CrusoeText-Regular.woff2");
+    font-weight: 400;
+    font-display: block;
+  }
+  @font-face {
+    font-family: Crusoe;
+    src: url("/fonts/CrusoeText-Bold.woff2");
+    font-weight: 600;
+    font-display: block;
+  }
+  ::-webkit-scrollbar-track {
+    width: .5rem;
+    height: 90%;
+    background: #000;
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar {
+    width: .5rem;
+    height: 90%;
+
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #031f26;
+    border-radius: 10px;
+
+  }
+ 
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes grow-shrink {
+    0% {
+      transform: scale(0.68);
+    }
+    79% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.90);
+    }
+  }
+
+  @keyframes shift {
+    from {left: 0;}
+    to {left: 100%; transform: translateX(100%);}
+  }
+</style>
+
+<script is:inline>
+  const blurredImgs = document.querySelectorAll(".blurred-img");
+
+  blurredImgs.forEach((blurredImg) =>
+    blurredImg.children[0].addEventListener("load", () => {
+      blurredImg?.classList.remove("blur-[2px]", "animate-pulse");
+      blurredImg.style.backgroundImage = "none";
+      blurredImg.children[0].classList.remove("opacity-0");
+      blurredImg.children[1]?.classList.remove("opacity-0");
+    })
+  );
+
+
+</script>
