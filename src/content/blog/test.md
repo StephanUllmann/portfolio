@@ -8,7 +8,7 @@ image:
   alt: Go Programming Language
   x: 215
   y: 81
-publishDate: '2024-09-05'
+publishDate: "2024-09-05"
 ---
 
 Learn a bit of Go! It's an easy language compiling to fast programs.
@@ -43,7 +43,7 @@ I can link internally to [my conclusion](#conclusion) on the same page when writ
 
 I can use the URL `https://example.com/page-1/#introduction` to navigate directly to my Introduction on the page.
 
-The background color is `#045d4a` for light mode and `#ffffff` for dark mode.
+The background color is #045d4a for light mode and #ffffff for dark mode.
 
 ### 02.09 - 09.09. - Events API Frontend
 
@@ -99,6 +99,7 @@ A footnote can also have multiple lines[^2].
 ---
 
 [^1]: My reference.
+
 [^2]:
     To add line breaks within a footnote, prefix new lines with 2 spaces.
     This is a second line.

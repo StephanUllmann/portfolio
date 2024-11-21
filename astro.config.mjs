@@ -1,6 +1,8 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import expressiveCode from 'astro-expressive-code';
+import expressiveCode from "astro-expressive-code";
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +22,8 @@ export default defineConfig({
 
   integrations: [
     expressiveCode({
-      themes: ['night-owl'],
+      themes: ["monokai"],
     }),
+    icon(),
   ],
 });

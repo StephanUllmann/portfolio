@@ -1,26 +1,32 @@
 ---
-import "../styles/global.css"
-const {title} = Astro.props
-const displayTitle = title ? title + " | " : ""
-import Header from "../components/header/Header.astro"
+import "../styles/global.css";
+const { title } = Astro.props;
+const displayTitle = title ? title + " | " : "";
+import Header from "../components/header/Header.astro";
+import Navigation from "../components/Navigation.astro";
 ---
 
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content={Astro.generator} />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍🔥</text></svg>">
-  <script src="htmx.org"></script>
-  <title>{displayTitle} Stephan Ullmann</title>
-</head>
-<body hx-boost="true">
-  <div class="layout">
-    <Header/>
-    <main>
-      <slot id="main-slot"/>
-    </main>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍🔥</text></svg>"
+    />
+    <script src="htmx.org"></script>
+    <title>{displayTitle} Stephan Ullmann</title>
+  </head>
+  <body hx-boost="true">
+    <div class="scrollbar"></div>
+    <div class="layout">
+      <!-- <Header/> -->
+      <main>
+        <slot id="main-slot" />
+      </main>
+      <Navigation />
+    </div>
+    <!-- <div class="scroll-to-top"><a href="#">&ShortUpArrow;</a></div> -->
+  </body>
 </html>
-

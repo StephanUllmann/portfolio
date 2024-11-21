@@ -1,15 +1,34 @@
 ---
-
+import { Icon } from "astro-icon/components";
 ---
 
 <header>
-  <div>SU</div>
+  <nav>
+    <ul>
+      <li>
+        <a
+          href="https://github.com/StephanUllmann"
+          target="_blank"
+          rel="noopener noreferrer"><Icon name="github" /></a
+        >
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/stephan-ullmann/"
+          target="_blank"
+          rel="noopener noreferrer"><Icon name="linkedin" /></a
+        >
+      </li>
+      <li>
+        <a href="mailto:stephan.ullmann@posteo.de"><Icon name="email" /></a>
+      </li>
+    </ul>
+  </nav>
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/projects">Projects</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="/blog">Blog</a></li>
-      <li><a href="/contact">Contact</a></li>
     </ul>
   </nav>
 </header>

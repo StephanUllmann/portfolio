@@ -1,25 +1,30 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection,getEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import Tags from "../../components/Tags.astro";
 
 export const getStaticPaths = (async () => {
-  const blogEntries = await getCollection("blog")
-  return blogEntries.map(e => ({params: {slug: e.slug}, props: {e}}));
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((e) => ({ params: { slug: e.slug }, props: { e } }));
 }) satisfies GetStaticPaths;
 
-const entry = await getEntry("blog", Astro.params.slug)
-console.log(Astro.params.slug)
-const {Content, headings} = await entry.render()
-
+const entry = await getEntry("blog", Astro.params.slug);
+console.log(Astro.params.slug);
+const { Content, headings } = await entry.render();
 ---
-<BaseLayout>
-  <h1>{entry.data.title}</h1>
-  <Tags tags={entry.data.tags}/>
-  <Image width={entry.data.image?.x ?? 320} height={entry.data.image?.y ?? 180} src={entry.data.image?.src || ''} alt={entry.data.image?.alt || ''}/>
-  <Content/>
+
+<BaseLayout title={entry.data.title}>
+  <div class="center">
+    <h1>{entry.data.title}</h1>
+    <Tags tags={entry.data.tags} />
+    <Image
+      width={entry.data.image?.x ?? 320}
+      height={entry.data.image?.y ?? 180}
+      src={entry.data.image?.src || ""}
+      alt={entry.data.image?.alt || ""}
+    />
+    <Content />
+  </div>
 </BaseLayout>
-
-

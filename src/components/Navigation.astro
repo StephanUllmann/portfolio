@@ -1,0 +1,43 @@
+<nav>
+  <ul>
+    <li><a href="#me">Stephan Ullmann</a></li>
+    <li><a href="#credentials">Web Developer</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="/blog">Blog</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    overflow-y: auto;
+    /* padding-block: 10vmin; */
+    /* position: fixed;
+    top: 0;
+    right: 0;
+    width: 38vmax; */
+  }
+  ul {
+    display: grid;
+    grid-template-rows: repeat(5, 20vmin);
+    grid-auto-rows: 20vmin;
+    align-items: center;
+  }
+  li {
+    height: 100%;
+    border-color: var(--base-light);
+    border-color: light-dark(var(--base), var(--base-light));
+  }
+  li:not(:last-of-type) {
+    border-bottom: 1px solid;
+  }
+  a {
+    padding: 1rem;
+    align-content: center;
+    display: block;
+    height: 100%;
+  }
+  a:hover {
+    background-color: hsla(from var(--base-light) h s l / 15%);
+  }
+</style>

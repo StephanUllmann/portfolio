@@ -7,58 +7,223 @@
 }
 
 :root {
-  --base: hsl(167, 92%, 19%);
+  color-scheme: light dark;
+  --base: hsl(180, 2%, 12%);
+  --base-light: hsl(180, 2%, 78%);
+  /* --primary: hsl(167, 92%, 19%); */
+  --gunmetal: hsla(196, 87%, 12%, 1);
+  --flame: hsla(16, 66%, 53%, 1);
+  --duke-blue: hsla(256, 100%, 32%, 1);
+  --burnt-sienna: hsla(16, 45%, 62%, 1);
+  --gunmetal-2: hsla(197, 66%, 13%, 1);
 
-  --accent: hsl(from var(--base) calc(h + 80) s l);
+  --primary: var(--gunmetal);
+  --accent: var(--flame);
+  --tertiary: var(--duke-blue);
+  --quart: var(--burnt-sienna);
+
+  --c: color-mix(in oklab, var(--base) 70%, var(--accent));
+  --shadow: 0px 0px 13px var(--c);
+
+  /* scrollbar-gutter: stable both-edges; */
+
+  --fs-xs: clamp(0.75rem, 0.894118vi + 0.53rem, 1.13rem);
+  --fs-base: clamp(1rem, 1.176471vi + 0.71rem, 1.5rem);
+  --fs-s: clamp(1.33rem, 1.576471vi + 0.94rem, 2rem);
+  --fs-m: clamp(1.78rem, 2.094118vi + 1.26rem, 2.67rem);
+  --fs-l: clamp(2.37rem, 2.8vi + 1.67rem, 3.56rem);
+
+  --line-height: calc(2px + 3ex + 2px);
+}
+/* ::-webkit-scrollbar-track {
+  width: 2rem;
+  background-color: var(--primary);
+} */
+
+::-webkit-scrollbar {
+  width: 0.7vw;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
 }
 
 html {
   box-sizing: border-box;
-  color-scheme: dark light;
+  --scrollbar-color-thumb: var(--accent);
+  --scrollbar-color-track: var(--primary);
+  --scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--primary);
+  scrollbar-width: thin;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
+  scroll-behavior: smooth;
+  font-family:
+    "Cascadia Code",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background-color: var(--base);
+  background-color: light-dark(var(--base-light), var(--base));
+  color: var(--base-light);
+  color: light-dark(var(--base), var(--base-light));
+  line-height: var(--line-height);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+li {
+  max-width: 80ch;
+  text-wrap: pretty;
+  font-size: var(--fs-base);
+  line-height: var(--line-height);
+}
+hr {
+  border: 1px solid var(--accent);
+  border-radius: 100% 20% 100% 20%;
 }
 
 .layout {
-  display: grid;
+  /* display: grid;
   grid-template-columns:
-    [full-start] minmax(6rem, 1fr) [content-start] minmax(min-content, 1800px) [content-end] minmax(6rem, 1fr)
+    [full-start] minmax(6rem, 1fr) [content-start] minmax(min-content, 1400px) [content-end] minmax(6rem, 1fr)
     [full-end];
 
   @media screen and (width < 712px) {
     grid-template-columns: [full-start]1rem [content-start] 1fr [content-end]1rem[ full-end];
-  }
+  } */
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  align-items: stretch;
 }
 
 header {
-  grid-column: content;
-  display: flex;
+  /* grid-column: content; */
+  /* grid-column: 1/2; */
+  /* position: fixed; */
+  /* bottom: 0;
+  left: 4.95rem; */
+  /* top: 20rem; */
+  /* right: 0; */
+  /* inline-size: 100vb; */
+  /* display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 3rem;
+  position: relative; */
+  /* rotate: 45deg; */
+  /* transform-origin: center right; */
+  /* background: linear-gradient(
+    in oklch to right,
+    var(--base),
+    color-mix(in oklch, hsl(from var(--base) h s calc(l - 2)) 75%, var(--primary)) 50%,
 
-  ul {
+    var(--base)
+  ); */
+  /* background: linear-gradient(
+    in oklch to right,
+    var(--base),
+    color-mix(in oklch, hsl(from var(--base) h s calc(l + 2)) 75%, var(--primary)) 5%,
+    var(--base) 50%,
+    color-mix(in oklch, hsl(from var(--base) h s calc(l + 2)) 75%, var(--primary)) 95%,
+    var(--base)
+  ); */
+
+  /* ul {
     display: flex;
     list-style: none;
-    gap: 1rem;
+    gap: 2rem;
   }
   a {
-    color: inherit;
-    text-decoration: none;
-    font-size: 0.9rem;
+    display: inline-block;
+
+    font-size: var(--fs-xs);
     text-underline-offset: 2px;
-    text-decoration-skip-ink: all;
-    &:hover {
+    text-decoration-skip-ink: all; */
+  /* rotate: 90deg; */
+  /* &:hover {
       text-decoration: underline;
-    }
+    } */
+  /* }
+  &::after,
+  &::before {
+    content: '';
+    width: 100%;
+    left: 0;
+    bottom: -2px;
+    position: absolute;
+    border: 1px solid var(--accent);
+    border-radius: 100% 20% 100% 20%;
   }
+  &::before {
+    bottom: unset;
+    top: 0;
+  } */
 }
 
 main {
-  grid-column: content;
+  border-right: 1px solid;
+  border-color: var(--base-light);
+  border-color: light-dark(var(--base), var(--base-light));
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* section:first-of-type {
+  min-height: 92.5vb;
+} */
+
+section {
+  min-height: 99.5vb;
+  display: grid;
+  align-items: center;
+  /* position: relative; */
+
+  /* &::after {
+    content: '';
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    border: 1px solid var(--accent);
+    border-radius: 100% 20% 100% 20%;
+  } */
+}
+/* hr {
+  width: 120%;
+  transform: translateX(-10%);
+  margin-block: 3rem;
+} */
+
+::marker {
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
+.center {
+  margin-inline: auto;
+  max-width: 1000px;
+  max-width: 80ch;
 }
 
 .tags {
@@ -67,7 +232,7 @@ main {
   margin-block: 1rem;
   & > * {
     padding: 0.25rem 0.75rem;
-    background-color: var(--base);
+    background-color: var(--primary);
     border-radius: 1rem;
   }
 }
@@ -94,4 +259,102 @@ pre:has(code) {
 
 .expressive-code {
   margin-block: 1rem;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  border: 1px solid var(--flame);
+  width: 2rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  color: var(--flame);
+  opacity: 0;
+  animation-name: scroll-to-top;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-direction: alternate;
+  animation-timeline: scroll();
+  transition: box-shadow 200ms linear;
+  cursor: default;
+  a {
+    cursor: inherit;
+  }
+
+  &:hover {
+    box-shadow: var(--shadow);
+  }
+}
+
+@keyframes scroll-to-top {
+  1% {
+    cursor: pointer;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-animation {
+  0% {
+    opacity: 0;
+    scale: 0.8;
+    transform: translateZ(-3px) translateY(-50%) translateX(-10%);
+  }
+  20% {
+    opacity: 0;
+    scale: 0.8;
+    transform: translateZ(-3px) translateY(-48%) translateX(-10%);
+  }
+
+  50% {
+    opacity: 1;
+    scale: 1;
+    transform: translateZ(3px) translateY(0) translateX(0%);
+  }
+
+  80% {
+    opacity: 0;
+    scale: 0.8;
+    transform: translateZ(-3px) translateY(48%) translateX(-10%);
+  }
+
+  100% {
+    opacity: 0;
+    scale: 0.8;
+    transform: translateZ(-3px) translateY(50%) translateX(-10%);
+  }
+}
+
+.scroller {
+  height: 100dvh;
+  overflow-y: scroll;
+  padding-inline: 1rem;
+  scrollbar-width: none;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  /* position: relative; */
+}
+
+section {
+  width: 100%;
+  padding-inline: 1rem;
+  height: 100dvh;
+  background-color: var(--base);
+  background-color: light-dark(var(--base-light), var(--base));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* position: absolute; */
+
+  animation-duration: 1ms;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  animation: scroll-animation linear;
+  animation-timeline: view(block 10%);
+  /* animation-timeline: scroll(root block); */
 }
