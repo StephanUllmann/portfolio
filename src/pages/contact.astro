@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { customTransition } from "../utils/viewTransition";
+---
+
+<BaseLayout>
+  <section transition:name="main" transition:animate={customTransition}>
+    Reach out blabla
+
+    <input type="text" />
+  </section>
+</BaseLayout>

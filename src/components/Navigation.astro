@@ -1,32 +1,36 @@
 <nav>
-  <ul>
-    <li><a href="#me">Stephan Ullmann</a></li>
-    <li><a href="#credentials">Web Developer</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <ul id="navlist">
+    <li><a href="/">Stephan Ullmann</a></li>
+    <li><a href="/credentials">Web Developer</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/contact">Contact</a></li>
     <li><a href="/blog">Blog</a></li>
   </ul>
 </nav>
 
 <style>
-  nav {
-    overflow-y: auto;
-    /* padding-block: 10vmin; */
-    /* position: fixed;
-    top: 0;
-    right: 0;
-    width: 38vmax; */
-  }
   ul {
+    position: sticky;
+    top: 0;
+    right:;
     display: grid;
-    grid-template-rows: repeat(5, 20vmin);
-    grid-auto-rows: 20vmin;
+    height: 100dvh;
+    grid-template-rows: repeat(5, 1fr);
+    grid-auto-rows: 19.99vh;
     align-items: center;
+    list-style: none;
+    z-index: 5;
   }
   li {
     height: 100%;
     border-color: var(--base-light);
     border-color: light-dark(var(--base), var(--base-light));
+
+    @media screen and (width < 500px) {
+      font-size: 0.7rem;
+      writing-mode: vertical-lr;
+      width: fit-content;
+    }
   }
   li:not(:last-of-type) {
     border-bottom: 1px solid;
@@ -40,4 +44,78 @@
   a:hover {
     background-color: hsla(from var(--base-light) h s l / 15%);
   }
+  .active {
+    background-color: hsla(from var(--base-light) h s l / 5%);
+  }
 </style>
+
+<script>
+  import { navigate } from "astro:transitions/client";
+  function debounce<F extends (...args: any[]) => any>(
+    func: F,
+    timeout = 300,
+  ): (...args: Parameters<F>) => void {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    return (...args: Parameters<F>) => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      timer = setTimeout(() => {
+        func(...args);
+      }, timeout);
+    };
+  }
+
+  const links = [...document.getElementById("navlist")!.children].map(
+    (li) => (li.firstChild! as HTMLAnchorElement).href,
+  );
+  let index = links.findIndex((link) => link === window.location.href);
+  // @ts-ignore
+  if (navigation) {
+    document
+      .querySelector(`[href^="${window.location.pathname}"]`)
+      ?.classList.add("active");
+
+    // @ts-ignore
+    navigation.addEventListener("navigate", (e) => {
+      const url = new URL(e.destination.url);
+      document
+        .querySelector(`[href^="${url.pathname}"]`)
+        ?.classList.add("active");
+    });
+  }
+
+  const handlePageChange = debounce((e: WheelEvent) => {
+    const isDown = e.deltaY > 0;
+    if (isDown) {
+      index = index === links.length - 1 ? 0 : index + 1;
+    } else {
+      index = index === 0 ? links.length - 1 : index - 1;
+    }
+    // (
+    //   document.querySelector(
+    //     `[href="${new URL(links[index]).pathname}"]`,
+    //   )! as HTMLAnchorElement
+    // ).click();
+    navigate(links[index]);
+  }, 100);
+
+  const handleWheel = (e: WheelEvent) => {
+    if ((e.target as Element).closest("nav")) handlePageChange(e);
+    else if (window.location.pathname.startsWith("/blog/")) return;
+    else {
+      const main = (e.target as Element).closest("main");
+      if (
+        main &&
+        main?.offsetHeight + main?.scrollTop === main?.scrollHeight &&
+        e.deltaY > 0
+      )
+        handlePageChange(e);
+      if (main?.scrollTop === 0 && e.deltaY < 0) handlePageChange(e);
+    }
+  };
+
+  document.addEventListener("wheel", handleWheel);
+</script>
