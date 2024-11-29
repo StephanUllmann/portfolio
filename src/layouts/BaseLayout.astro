@@ -54,6 +54,11 @@ import Navigation from "../components/Navigation.astro";
 </html>
 
 <style is:global>
+  ::selection {
+    background-color: oklch(from var(--accent) l c h / 50%);
+    color: oklch(from var(--gunmetal) l c h / 75%);
+  }
+
   .noise {
     position: absolute;
     inset: 10px 0;

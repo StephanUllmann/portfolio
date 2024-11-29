@@ -6,7 +6,7 @@ import { customTransition } from "../utils/viewTransition";
 
 <BaseLayout>
   <section transition:name="main" transition:animate={customTransition}>
-    <h1>Hey there, I'm Stephan.</h1>
+    <h1>Hey there, I'm <span class="name">Stephan</span>.</h1>
     <div class="equal-width">
       <p>Web Developer and Instructor from Germany.</p>
       <ul class="iconlist">
@@ -39,6 +39,27 @@ import { customTransition } from "../utils/viewTransition";
     position: relative;
     overflow: hidden;
   }
+
+  .name {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "👋";
+      right: 0;
+      top: 0;
+      opacity: 0;
+      transition: all 200ms ease-in-out;
+    }
+    &:hover::after {
+      position: absolute;
+      content: "👋";
+      opacity: 1;
+      right: -20px;
+      top: -20px;
+      transition: all 200ms ease-in-out;
+    }
+  }
   .equal-width {
     width: fit-content;
   }
@@ -54,9 +75,8 @@ import { customTransition } from "../utils/viewTransition";
     position: relative;
     &::before {
       content: "";
-      width: 3rem;
-      height: 3rem;
-      filter: blur(7rem);
+      inset: 25%;
+      filter: blur(3rem);
       display: block;
       position: absolute;
       z-index: -1;
@@ -64,6 +84,24 @@ import { customTransition } from "../utils/viewTransition";
     }
     &:hover::before {
       background-color: var(--accent);
+    }
+    &:has(> [data-icon="css"]:hover)::before {
+      background-color: oklch(from rebeccapurple 40% c h);
+    }
+    &:has(> [data-icon="ts"]:hover)::before {
+      background-color: oklch(from #3178c6 40% c h);
+    }
+    &:has(> [data-icon="go"]:hover)::before {
+      background-color: oklch(from #00acd7 40% c h);
+    }
+    &:has(> [data-icon="react"]:hover)::before {
+      background-color: oklch(from #58c4dc 40% c h);
+    }
+    &:has(> [data-icon="pg"]:hover)::before {
+      background-color: oklch(from #336791 40% c h);
+    }
+    &:has(> [data-icon="git"]:hover)::before {
+      background-color: oklch(from #f03c2e 40% c h);
     }
   }
 
