@@ -72,9 +72,9 @@ body {
     "Helvetica Neue",
     sans-serif;
   background-color: var(--base);
-  background-color: light-dark(var(--base-light), var(--base));
+  /* background-color: light-dark(var(--base-light), var(--base)); */
   color: var(--base-light);
-  color: light-dark(var(--base), var(--base-light));
+  /* color: light-dark(var(--base), var(--base-light)); */
   line-height: var(--line-height);
 }
 
@@ -117,10 +117,10 @@ hr {
 }
 
 main {
-  background-color: color-mix(in oklch, var(--base) 95%, var(--accent));
+  background-color: color-mix(in oklch, var(--base) 97.5%, var(--accent));
   border-right: 1px solid;
   border-color: var(--base-light);
-  border-color: light-dark(var(--base), var(--base-light));
+  /* border-color: light-dark(var(--base), var(--base-light)); */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   height: 100dvh;
@@ -134,9 +134,10 @@ main {
 
 section {
   min-height: 99.5vb;
-  /* display: grid; */
-  /* align-items: center; */
   align-content: center;
+  width: 100%;
+  padding-inline: 1rem;
+  background-color: var(--base);
 }
 
 ::marker {
@@ -249,21 +250,4 @@ pre:has(code) {
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   /* position: relative; */
-}
-
-section {
-  width: 100%;
-  padding-inline: 1rem;
-  background-color: var(--base);
-  background-color: light-dark(var(--base-light), var(--base));
-  /* scroll-snap-align: start;
-  scroll-snap-stop: always; */
-  /* position: absolute; */
-
-  /* animation-duration: 1ms;
-  animation-direction: alternate;
-  animation-fill-mode: both;
-  animation: scroll-animation linear;
-  animation-timeline: view(block 10%); */
-  /* animation-timeline: scroll(root block); */
 }

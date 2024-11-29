@@ -3,7 +3,6 @@ import "../styles/global.css";
 const { title } = Astro.props;
 import { ViewTransitions } from "astro:transitions";
 const displayTitle = title ? title + " | " : "";
-import Header from "../components/header/Header.astro";
 import Navigation from "../components/Navigation.astro";
 ---
 
@@ -14,22 +13,19 @@ import Navigation from "../components/Navigation.astro";
     <meta name="generator" content={Astro.generator} />
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍🔥</text></svg>"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍⬛</text></svg>"
     />
-    <!-- <script src="htmx.org"></script> -->
     <ViewTransitions />
     <title>{displayTitle} Stephan Ullmann</title>
   </head>
-  <body hx-boost="true">
+  <body>
     <div class="scrollbar"></div>
     <div class="layout">
-      <!-- <Header/> -->
       <main>
         <slot id="main-slot" />
       </main>
       <Navigation />
     </div>
-    <!-- <div class="scroll-to-top"><a href="#">&ShortUpArrow;</a></div> -->
 
     <div class="noise">
       <svg height="100%" width="100%">
@@ -61,12 +57,7 @@ import Navigation from "../components/Navigation.astro";
   .noise {
     position: absolute;
     inset: 10px 0;
-    /* top: -20px;
-    bottom: -20px;
-    left: 0;
-    right: 0; */
     opacity: 0.08;
-    /* z-index: -1; */
     pointer-events: none;
     mask-image: linear-gradient(
       transparent 2.5%,
@@ -98,51 +89,13 @@ import Navigation from "../components/Navigation.astro";
     100% {
       opacity: 1;
     }
-    /* 0% {
-      translate: 0 100%;
-      scale: 0.8;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    }
-    50% {
-      translate: 0 40%;
-      scale: 0.8;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    }
-    100% {
-      opacity: 1;
-      translate: 0 0%;
-      scale: 1;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    } */
   }
   @keyframes bump-out {
     0% {
       opacity: 1;
     }
     100% {
-      opacity: 0;
+      opacity: 0.25;
     }
-    /* 0% {
-      opacity: 1;
-      translate: 0 0%;
-      scale: 1;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    }
-    50% {
-      translate: 0 -40%;
-      scale: 0.8;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    }
-    100% {
-      translate: 0 -100%;
-      scale: 0.8;
-      outline: 2px solid var(--base-light);
-      border-radius: 1rem;
-    } */
   }
 </style>
