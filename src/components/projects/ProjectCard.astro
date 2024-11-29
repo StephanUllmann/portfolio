@@ -1,0 +1,103 @@
+---
+interface Props {
+  project: Project;
+  href: string;
+}
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+const { project, href } = Astro.props;
+const iconmap: { [key: string]: string } = {
+  css: "css",
+  ts: "ts",
+  typescript: "ts",
+  go: "go",
+  csharp: "csharp",
+};
+---
+
+<li>
+  <a href={`/projects/${href}`} class="card">
+    <!-- <div class="img-wrapper"> -->
+    <Image
+      src={project.image.src}
+      alt={project.image.alt}
+      width={320}
+      height={180}
+      class="project-img"
+    />
+    <!-- </div> -->
+    <div class="content">
+      <h2>{project.title}</h2>
+      <ul>
+        {
+          project.tags.map((tag) => (
+            <li>
+              {iconmap[tag.toLowerCase()] ? (
+                <Icon name={iconmap[tag.toLowerCase()]} />
+              ) : (
+                <span class="badge">{tag}</span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </a>
+</li>
+
+<style>
+  @property --deg {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 45deg;
+  }
+  .card {
+    display: grid;
+    justify-items: center;
+  }
+  .img-wrapper {
+    border-radius: 1rem;
+    overflow: clip;
+    height: 120px;
+  }
+  .project-img {
+    --deg: 25deg;
+    border: 0.2rem solid transparent;
+    border-image: linear-gradient(
+        var(--deg, 45deg) in oklch,
+        var(--primary),
+        var(--accent)
+      )
+      1 / 0.5rem;
+    border-radius: 1.2rem;
+    overflow: clip;
+    object-fit: cover;
+    outline: 0.5rem solid var(--base);
+    outline-offset: 0.12rem;
+    animation: rotate 5000ms linear infinite alternate;
+  }
+  .content {
+    padding: 0.5rem 1rem;
+  }
+
+  @keyframes rotate {
+    from {
+      --deg: 25deg;
+    }
+    to {
+      --deg: 70deg;
+    }
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+
+    & > * {
+      font-size: var(--fs-xs);
+    }
+  }
+</style>
