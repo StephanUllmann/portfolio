@@ -1,15 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
 <nav>
-  <ul id="navlist">
+  <ul id="navlist" class="navlist">
     <li><a href="/">Stephan Ullmann</a></li>
-    <li><a href="/credentials">Web Developer</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/contact">Contact</a></li>
-    <li><a href="/blog">Blog</a></li>
+    <li><a href="/dev">Web Developer</a></li>
+    <!-- <li><a href="/projects">Projects</a></li>
+    <li><a href="/blog">Blog</a></li> -->
+    <li>
+      <ul class="iconlist">
+        <li>
+          <a
+            href="https://github.com/StephanUllmann"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"><Icon name="github" /></a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/stephan-ullmann/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"><Icon name="linkedin" /></a
+          >
+        </li>
+        <li>
+          <a href="mailto:stephan.ullmann@posteo.de" aria-label="Email"
+            ><Icon name="email" /></a
+          >
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
 <style>
-  ul {
+  .navlist {
     position: sticky;
     top: 0;
     right:;
@@ -21,7 +49,7 @@
     list-style: none;
     z-index: 5;
   }
-  li {
+  .navlist > li {
     height: 100%;
     border-color: var(--base-light);
     border-color: light-dark(var(--base), var(--base-light));
@@ -31,9 +59,9 @@
       writing-mode: vertical-lr;
       width: fit-content;
     }
-  }
-  li:not(:last-of-type) {
-    border-bottom: 1px solid;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid;
+    }
   }
   a {
     padding: 1rem;
@@ -44,6 +72,21 @@
   a:hover {
     background-color: hsla(from var(--base-light) h s l / 15%);
   }
+  .iconlist a:hover {
+    background-color: transparent;
+    color: hsla(from var(--base-light) h s l / 66%);
+    transition: color 100ms linear;
+  }
+
+  .iconlist {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    li {
+      height: fit-content;
+    }
+  }
+
   .active {
     background-color: hsla(from var(--base-light) h s l / 5%);
   }
@@ -68,9 +111,10 @@
     };
   }
 
-  const links = [...document.getElementById("navlist")!.children].map(
-    (li) => (li.firstChild! as HTMLAnchorElement).href,
+  const links = [...document.getElementById("navlist")!.children].flatMap(
+    (li) => (li.firstChild! as HTMLAnchorElement).href || [],
   );
+  console.log(links);
   let index = links.findIndex((link) => link === window.location.href);
   // @ts-ignore
   if (navigation) {
@@ -88,6 +132,7 @@
   }
 
   const handlePageChange = debounce((e: WheelEvent) => {
+    // const handlePageChange = (e: WheelEvent) => {
     const isDown = e.deltaY > 0;
     if (isDown) {
       index = index === links.length - 1 ? 0 : index + 1;
@@ -100,6 +145,7 @@
     //   )! as HTMLAnchorElement
     // ).click();
     navigate(links[index]);
+    // };
   }, 100);
 
   const handleWheel = (e: WheelEvent) => {

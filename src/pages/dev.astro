@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { customTransition } from "../utils/viewTransition";
+---
+
+<BaseLayout>
+  <section transition:name="main" transition:animate={customTransition}>
+    <p>I used to teach kids Ethics and German grammar.</p>
+    <p>Now I teach programming logic and JavaScript syntax to adults.</p>
+    <p>
+      I like exploring things, and Web Technologies is a far field to delve
+      into.
+    </p>
+    <p>
+      As well as I am keen on CSS and recent, exciting additions to the
+      language, I like learning server-side languages like Go and C# to optimize
+      the performance of a system.
+    </p>
+  </section>
+</BaseLayout>

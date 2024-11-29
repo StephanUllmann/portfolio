@@ -90,6 +90,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
 p,
 li {
   max-width: 80ch;
@@ -130,8 +134,9 @@ main {
 
 section {
   min-height: 99.5vb;
-  display: grid;
-  align-items: center;
+  /* display: grid; */
+  /* align-items: center; */
+  align-content: center;
 }
 
 ::marker {

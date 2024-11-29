@@ -1,28 +1,28 @@
 const anim = {
   old: {
     name: "bump-out",
-    duration: "0.5s",
+    duration: "0.25s",
     easing: "linear",
     // direction: "reverse",
   },
   new: {
-    delay: "0.5s",
+    delay: "0.25s",
     name: "bump-in",
-    duration: "0.25s",
+    duration: "0.2s",
     easing: "linear",
   },
 };
 const animBack = {
   new: {
-    delay: "0.5s",
+    delay: "0.25s",
     name: "bump-out",
-    duration: "0.25s",
+    duration: "0.2s",
     easing: "linear",
     // direction: "reverse",
   },
   old: {
     name: "bump-in",
-    duration: "0.5s",
+    duration: "0.25s",
     easing: "linear",
   },
 };

@@ -1,89 +1,114 @@
 ---
+import { Icon } from "astro-icon/components";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { customTransition } from "../utils/viewTransition";
 ---
 
 <BaseLayout>
-  <!-- <div class="scroller"> -->
   <section transition:name="main" transition:animate={customTransition}>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dicta
-      repellat odit, voluptate quisquam accusamus tenetur unde quod corporis
-      animi quos dignissimos autem obcaecati laboriosam ratione dolor saepe ex
-      laborum!
-    </p>
-  </section>
-
-  <!-- <section id="credentials">JavaScript blabla Go bla c# blablabla</section>
-
-    <section id="projects">
-      <ul>
-        <li>Some</li>
-        <li>Awesome</li>
-        <li>Projects</li>
+    <h1>Hey there, I'm Stephan.</h1>
+    <div class="equal-width">
+      <p>Web Developer and Instructor from Germany.</p>
+      <ul class="iconlist">
+        <li><Icon name="css" /></li>
+        <li><Icon name="ts" /></li>
+        <li><Icon name="go" /></li>
+        <!-- <li><Icon name="csharp" /></li> -->
+        <li><Icon name="react" /></li>
+        <li><Icon name="pg" /></li>
+        <li><Icon name="git" /></li>
       </ul>
-    </section>
-
-    <section id="contact">
-      Reach out blabla
-
-      <input type="text" />
-    </section> -->
-  <!-- </div> -->
+    </div>
+    <div class="spark" style="--delay: 0ms;--dur: 9341ms;--p:75% 5%;">
+      <Icon name="css" />
+    </div>
+    <div class="spark" style="--delay: 123ms;--dur: 8412ms;--p:10% 60%;">
+      <Icon name="go" />
+    </div>
+    <div class="spark" style="--delay: 846ms;--dur: 9344ms;--p: 5% 2%;">
+      <Icon name="git" />
+    </div>
+    <div class="spark" style="--delay: 1024ms;--dur: 5341ms;--p: 85% 80%;">
+      <Icon name="csharp" />
+    </div>
+  </section>
 </BaseLayout>
 
-<style></style>
+<style>
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+  .equal-width {
+    width: fit-content;
+  }
+  .iconlist {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1;
+    padding: 1rem;
+    position: relative;
+    &::before {
+      content: "";
+      width: 3rem;
+      height: 3rem;
+      filter: blur(7rem);
+      display: block;
+      position: absolute;
+      z-index: -1;
+      transition: all 200ms linear;
+    }
+    &:hover::before {
+      background-color: var(--accent);
+    }
+  }
+
+  [data-icon] {
+    font-size: 3rem;
+    filter: saturate(0.25);
+    transition: all 200ms linear;
+
+    &:hover {
+      filter: saturate(0.9);
+    }
+  }
+
+  .spark {
+    --p: 10% 25%;
+    --r: 20deg;
+    --dur: 2000ms;
+    --delay: 1000ms;
+    position: absolute;
+    z-index: -1;
+    inset: var(--p, 10% 25%);
+    width: 5rem;
+    aspect-ratio: 3 / 2;
+    filter: blur(2rem) brightness(0.5) saturate(0.75);
+    transform: scale(5, 2) rotate(var(--r));
+    transform-style: preserve-3d;
+    animation: blink var(--dur, 1000ms) var(--delay, 1000ms) ease infinite
+      alternate;
+
+    & [data-icon] {
+      width: 100%;
+      height: 100%;
+      /* filter: saturate(0.75); */
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      filter: blur(1.7rem) brightness(0.4) saturate(0.95);
+    }
+    40% {
+      filter: blur(2.4rem) brightness(0.45) saturate(1);
+    }
+    100% {
+      filter: blur(1.5rem) brightness(0.42) saturate(0.95);
+    }
+  }
+</style>

@@ -30,10 +30,53 @@ import Navigation from "../components/Navigation.astro";
       <Navigation />
     </div>
     <!-- <div class="scroll-to-top"><a href="#">&ShortUpArrow;</a></div> -->
+
+    <div class="noise">
+      <svg height="100%" width="100%">
+        <defs>
+          <pattern
+            height="500"
+            width="500"
+            patternUnits="userSpaceOnUse"
+            id="noise-pattern"
+          >
+            <filter y="0" x="0" id="noise">
+              <feTurbulence
+                stitchTiles="stitch"
+                numOctaves="3"
+                baseFrequency="0.8"
+                type="fractalNoise"></feTurbulence>
+              <feBlend mode="screen"></feBlend>
+            </filter>
+            <rect filter="url(#noise)" height="500" width="500"></rect>
+          </pattern>
+        </defs>
+        <rect fill="url(#noise-pattern)" height="100%" width="100%"></rect>
+      </svg>
+    </div>
   </body>
 </html>
 
 <style is:global>
+  .noise {
+    position: absolute;
+    inset: 10px 0;
+    /* top: -20px;
+    bottom: -20px;
+    left: 0;
+    right: 0; */
+    opacity: 0.08;
+    /* z-index: -1; */
+    pointer-events: none;
+    mask-image: linear-gradient(
+      transparent 2.5%,
+      white 30%,
+      white 70%,
+      transparent 97.5%
+    );
+    filter: grayscale(1);
+  }
+
   @keyframes bump {
     0% {
       opacity: 0;
