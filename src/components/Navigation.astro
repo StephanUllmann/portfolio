@@ -118,16 +118,21 @@ import { Icon } from "astro-icon/components";
   let index = links.findIndex((link) => link === window.location.href);
   // @ts-ignore
   if (navigation) {
-    document
-      .querySelector(`[href^="${window.location.pathname}"]`)
-      ?.classList.add("active");
+    const pathn = window.location.pathname;
+    const match =
+      pathn.length > 1 && pathn.at(-1) === "/"
+        ? pathn.slice(0, pathn.length - 1)
+        : pathn;
+    document.querySelector(`[href^="${match}"]`)?.classList.add("active");
 
     // @ts-ignore
     navigation.addEventListener("navigate", (e) => {
       const url = new URL(e.destination.url);
-      document
-        .querySelector(`[href^="${url.pathname}"]`)
-        ?.classList.add("active");
+      const match =
+        url.pathname.length > 1 && url.pathname.at(-1) === "/"
+          ? url.pathname.slice(0, url.pathname.length - 1)
+          : url.pathname;
+      document.querySelector(`[href^="${match}"]`)?.classList.add("active");
     });
   }
 
