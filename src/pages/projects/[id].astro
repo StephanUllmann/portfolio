@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import Tags from "../../components/Tags.astro";
+
+export const getStaticPaths = (async () => {
+  const blogEntries = await getCollection("projects");
+  return blogEntries.map((e) => ({
+    params: { id: e.id },
+    props: { project: e },
+  }));
+}) satisfies GetStaticPaths;
+
+// const entry = await getEntry("projects", Astro.params.slug);
+// const project = entry!.data;
+const { project } = Astro.props;
+// const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title}>
+  <div class="center">
+    <h1>{project.data.title}</h1>
+  </div>
+</BaseLayout>

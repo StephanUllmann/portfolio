@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../.astro/collections/projects.schema.json",
+  "title": "WBS Talent Pool",
+  "tags": ["NextJS", "TypeScript"],
+  "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
+  "ghLink": "https://github.com/StephanUllmann/mill-game",
+  "image": {
+    "src": "/projects/talent-pool/talent-pool-1.png",
+    "alt": "NextJS Talent Pool",
+    "x": 1913,
+    "y": 908
+  },
+  "images": [
+    {
+      "src": "/projects/talent-pool/talent-pool-1.png",
+      "alt": "NextJS Talent Pool",
+      "x": 1913,
+      "y": 908
+    }
+  ],
+  "description": "A simple Mill Board Game. PWA, online playable against a human opponent via WebSockets.",
+  "publishDate": "2024-11-29",
+  "relatedPosts": ["test"]
+}
