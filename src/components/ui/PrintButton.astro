@@ -1,60 +1,5 @@
-<button id="print-button" class="print-button">&DownArrowBar;</button>
-
-<script>
-  function printDiv() {
-    // Get the specific element
-    const element = document.querySelector(".cv");
-    if (!element) return;
-
-    // Create a new window
-    const printWindow = window.open("", "_blank");
-    if (!printWindow) return;
-
-    // Get the original styles
-    const styles = Array.from(document.styleSheets)
-      .map((styleSheet) => {
-        try {
-          return Array.from(styleSheet.cssRules)
-            .map((rule) => rule.cssText)
-            .join("\n");
-        } catch {
-          // Handle CORS issues with external stylesheets
-          return "";
-        }
-      })
-      .join("\n");
-
-    // Create the print window content
-    printWindow.document.write(
-      `<!DOCTYPE html><html><head><title>Stephan_Ullmann_CV</title>
-          <style>` +
-        styles +
-        `</style>
-          <style>
-            @media print {
-              @page {
-                margin: 0;
-                size: A4;
-              }
-              
-            }
-          </style>
-        </head>
-        <body>` +
-        element.outerHTML +
-        "<script>" +
-        ` window.onload = function() {
-              window.print();` +
-        "window.onafterprint = function() {window.close();};}" +
-        "<" +
-        "/script>" +
-        "</body></html>",
-    );
-    printWindow.document.close();
-  }
-
-  document.getElementById("print-button")!.addEventListener("click", printDiv);
-</script>
+<a href="/stephanullmann_cv.pdf" download class="print-button">&DownArrowBar;</a
+>
 
 <style>
   @property --amount {
@@ -63,6 +8,8 @@
     initial-value: 50%;
   }
   .print-button {
+    display: grid;
+    place-content: center;
     position: fixed;
     bottom: 2rem;
     right: 2rem;
