@@ -11,8 +11,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const entry = await getEntry("projects", Astro.params.slug);
-console.log(entry);
-const project = entry.data;
+const project = entry!.data;
 ---
 
 <BaseLayout title={project.title}>

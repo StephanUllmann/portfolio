@@ -1,0 +1,107 @@
+{
+  "name": {
+    "first": "Stephan",
+    "middle": "Philipp",
+    "last": "Ullmann"
+  },
+  "role": "web developer",
+  "data": {
+    "address": "Marienhof 1, 17279 Lychen",
+    "phone": "+49 176 63134613",
+    "email": "hello@stephanullmann.dev",
+    "github": "github.com/StephanUllmann",
+    "website": "stephanullmann.dev",
+    "birthday": "25. may 1987"
+  },
+  "profile": "Freshly trained full stack developer, proficient in up to date technologies. I am skilled in learning complex subjects quickly, analyze systems, solving problems and communicating my results.",
+  "skills": [
+    "CSS",
+    "TypeScript, React, NextJS, Node",
+    "Git, GitHub Actions",
+    "Docker",
+    "Go, Fiber",
+    "Python",
+    "C#"
+  ],
+  "languages": ["German - native", "English - fluent"],
+  "experience": [
+    {
+      "title": "Instructor Web & App Development",
+      "time": ["09/2023", "today"],
+      "company": "WBS CODING SCHOOL",
+      "tasks": [
+        "teaching support",
+        "teaching classes in HTML, CSS, JS, Express, SQL, MongoDB",
+        "creating and reviewing teaching material",
+        "NextJS 15 project: WBS Talent Pool"
+      ]
+    },
+    {
+      "title": "Teacher for German and Ethics",
+      "time": ["08/2017", "11/2022"],
+      "company": "Aktive Naturschule Templin",
+      "tasks": [
+        "Positive psychology based group training and special needs education, grades 1 - 6",
+        "Ethics, grades 5 - 6",
+        "German, grades 4 - 6"
+      ]
+    },
+    {
+      "title": "Mediator, Trainer for Non-violent Communication",
+      "time": ["02/2016", "07/2017"],
+      "company": "freelance",
+      "tasks": [
+        "led workshops on communication",
+        "mediated conflicts in small cooperatives"
+      ]
+    },
+    {
+      "title": "Child Day Care",
+      "time": ["09/2014", "02/2016"],
+      "company": "freelance",
+      "tasks": ["led a team of four to discover the wonders of the world"]
+    }
+  ],
+  "education": [
+    {
+      "title": "Web  & App Development Bootcamp",
+      "time": ["03/2023", "07/2023"],
+      "company": "WBS CODING SCHOOL",
+      "tasks": [
+        "Project based, team oriented, hybrid training, agile methods",
+        "Final Project: SightSeeker - a social map and travelling app"
+      ]
+    },
+    {
+      "title": "Doctoral studies | Philosophy - cancelled",
+      "time": ["10/2012", "04/2014"],
+      "company": "Universität Leipzig",
+      "tasks": [
+        "Graecum",
+        "Plato on the role of examples (parageigmata) in the aquisition of knowledge"
+      ]
+    },
+    {
+      "title": "Master of Arts (M.A.) | Philosophy",
+      "time": ["10/2010", "09/2012"],
+      "company": "Universität Leipzig",
+      "tasks": [
+        "Logic, Philosophy of Language, Ancient Greek Philosophy",
+        "Tutoring students on how to write Term papers",
+        "Thesis: Aristotle and Plato on how to aquire knowledge",
+        "Final grade: 1.1"
+      ]
+    },
+    {
+      "title": "Bachelor of Arts (B.A.) | Philosophy-Neuroscience-Cognition",
+      "time": ["10/2006", "09/2010"],
+      "company": "Universität Magdeburg",
+      "tasks": [
+        "Philosophy of Science, Mind, Language",
+        "Neuroanatomy, -physiology, Psychology",
+        "Thesis: Problem Solving in Ordinary Language Philosophy",
+        "Final grade: 1.6"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+---
+import "../styles/global.css";
+import PrintButton from "../components/ui/PrintButton.astro";
+import { Icon } from "astro-icon/components";
+import cv from "../content/cv.json";
+---
+
+<html lang="en" transition:name="root" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍⬛</text></svg>"
+    />
+    <title>CV | Stephan Ullmann</title>
+  </head>
+  <body>
+    <div class="cv" id="cv">
+      <header class="left">
+        <hgroup class="intro">
+          <h1><span>{cv.name.first}</span> <span>{cv.name.last}</span></h1>
+          <p>{cv.role}</p>
+        </hgroup>
+        <section class="contact">
+          <h2>Contact</h2>
+          <ul>
+            {
+              Object.entries(cv.data).map(([key, entry]) => {
+                return (
+                  <li>
+                    <Icon name={key} />
+                    <span>
+                      &nbsp;|
+                      {(() => {
+                        switch (key) {
+                          case "phone":
+                            return (
+                              <a
+                                href={
+                                  "tel:" + (entry as string).replaceAll(" ", "")
+                                }
+                              >
+                                {entry}
+                              </a>
+                            );
+                          case "email":
+                            return <a href={"mailto:" + entry}>{entry}</a>;
+                          case "github":
+                          case "website":
+                            return (
+                              <a
+                                href={("https://" + entry) as string}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {entry}
+                              </a>
+                            );
+                          case "birthday":
+                            return new Intl.DateTimeFormat("en-UK").format(
+                              new Date(entry),
+                            );
+                          default:
+                            return entry;
+                        }
+                      })()}
+                    </span>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </section>
+        <section class="profile">
+          <h2>Profile</h2>
+          <p>{cv.profile}</p>
+        </section>
+        <section class="skills">
+          <h2>Skills</h2>
+          <ul>
+            {cv.skills.map((s) => <li>{s}</li>)}
+          </ul>
+        </section>
+        <section class="langs">
+          <h2>Languages</h2>
+          <ul>
+            {cv.languages.map((l) => <li>{l}</li>)}
+          </ul>
+        </section>
+      </header>
+      <main class="right">
+        <section class="experience">
+          <h2>Experience</h2>
+          <ul>
+            {
+              cv.experience.map((e) => (
+                <li class="life-item">
+                  <hgroup>
+                    <h3>{e.title}</h3>
+                    <p>
+                      {e.time[0]} - {e.time[1]}
+                      |&nbsp;{e.company}
+                    </p>
+                  </hgroup>
+                  <ul class="tasks">
+                    {e.tasks.map((t) => (
+                      <li>{t}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+        <section class="experience">
+          <h2>Education</h2>
+          <ul>
+            {
+              cv.education.map((e) => (
+                <li class="life-item">
+                  <hgroup>
+                    <h3>{e.title}</h3>
+                    <p>
+                      {e.time[0]} - {e.time[1]}
+                      |&nbsp;{e.company}
+                    </p>
+                  </hgroup>
+                  <ul class="tasks">
+                    {e.tasks.map((t) => (
+                      <li>{t}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </main>
+    </div>
+    <PrintButton />
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--base);
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+  main {
+    height: unset;
+  }
+  .cv {
+    height: 297mm;
+    width: 210mm;
+    background-color: white;
+    color: var(--base) !important;
+    display: flex;
+  }
+  section {
+    background-color: white;
+    min-height: unset;
+  }
+  p,
+  li,
+  h3 {
+    font-size: 0.75rem;
+  }
+  .left {
+    height: 100%;
+    border-right: 2px solid var(--accent);
+    width: 87mm;
+    padding: 18.4mm 14mm 18.4mm 18.4mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+    position: relative;
+    width: fit-content;
+    margin-bottom: 0.25rem;
+    translate: -1ch;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -1px;
+      right: -1ch;
+      background-color: var(--accent);
+      border-radius: 100%;
+    }
+  }
+  .intro {
+    width: fit-content;
+    translate: -1ch;
+    h1 {
+      margin: 0;
+      font-weight: 100;
+      display: flex;
+      flex-direction: column;
+      font-size: 2.5rem;
+      line-height: 2.25rem;
+      span {
+        letter-spacing: 7px;
+        &::first-letter {
+          /* font-weight: 300; */
+        }
+      }
+    }
+    p {
+      margin: 0;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 7.5px;
+      text-align: center;
+    }
+  }
+  .contact {
+    ul {
+      list-style: none;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 0.6rem;
+    }
+    [data-icon] {
+      justify-self: start;
+      font-size: 1.1rem;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .right {
+    background-color: white;
+    padding: 20.4mm 18.4mm 16.4mm 11mm;
+    border: none;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .life-item {
+    margin-block: 0.3rem;
+  }
+  .tasks {
+    list-style: disc;
+    margin-left: 3ch;
+    li {
+      font-size: 0.6rem;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+      &::marker {
+        font-size: inherit;
+      }
+    }
+    margin-bottom: 2px;
+  }
+</style>
