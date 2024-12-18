@@ -43,21 +43,8 @@
         <body>` +
         element.outerHTML +
         "<script>" +
-        `  window.onload = function() {
-            const printSettings = {
-              pageSetup: { name: 'Stephan_Ullmann_CV.pdf' },
-              shouldPrintBackgrounds: true
-            };
-            
-            try {
-              const printOptions = { 
-                path: 'Stephan_Ullmann_CV.pdf',
-                printBackground: true
-              };
-              window.print(printOptions);
-            } catch(e) {
-              window.print();
-            }` +
+        ` window.onload = function() {
+              window.print();` +
         "window.onafterprint = function() {window.close();};}" +
         "<" +
         "/script>" +
