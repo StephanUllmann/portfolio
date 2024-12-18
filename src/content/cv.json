@@ -8,17 +8,18 @@
   "data": {
     "address": "Marienhof 1, 17279 Lychen",
     "phone": "+49 176 63134613",
-    "email": "hello@stephanullmann.dev",
+    "email": "stephan.ullmann@posteo.de",
     "github": "github.com/StephanUllmann",
     "website": "stephanullmann.dev",
     "birthday": "25. may 1987"
   },
-  "profile": "Freshly trained full stack developer, proficient in up to date technologies. I am skilled in learning complex subjects quickly, analyze systems, solving problems and communicating my results.",
+  "profile": "Full stack developer versed in modern web technologies, with particular expertise in CSS, JavaScript, and React. Quick to adapt to complex systems and effectively communicate solutions. Additional experience with Go, Python, and C#.",
   "skills": [
-    "CSS",
     "TypeScript, React, NextJS, Node",
+    "CSS, Tailwind, SCSS",
     "Git, GitHub Actions",
     "Docker",
+    "RESTful APIs, OpenAI integration",
     "Go, Fiber",
     "Python",
     "C#"
@@ -31,9 +32,9 @@
       "company": "WBS CODING SCHOOL",
       "tasks": [
         "teaching support",
-        "teaching classes in HTML, CSS, JS, Express, SQL, MongoDB",
+        "teaching classes in MERN/PERN stack",
         "creating and reviewing teaching material",
-        "NextJS 15 project: WBS Talent Pool"
+        "internal NextJS 15 project: WBS Talent Pool"
       ]
     },
     {
@@ -41,9 +42,9 @@
       "time": ["08/2017", "11/2022"],
       "company": "Aktive Naturschule Templin",
       "tasks": [
-        "Positive psychology based group training and special needs education, grades 1 - 6",
-        "Ethics, grades 5 - 6",
-        "German, grades 4 - 6"
+        "Ethics, classes 5 - 6",
+        "German, classes 4 - 6",
+        "Positive psychology based group training and special needs education, classes 1 - 6"
       ]
     },
     {
@@ -78,7 +79,7 @@
       "company": "Universität Leipzig",
       "tasks": [
         "Graecum",
-        "Plato on the role of examples (parageigmata) in the aquisition of knowledge"
+        "Plato on the role of examples in the aquisition of knowledge"
       ]
     },
     {
@@ -98,7 +99,7 @@
       "company": "Universität Magdeburg",
       "tasks": [
         "Philosophy of Science, Mind, Language",
-        "Neuroanatomy, -physiology, Psychology",
+        "Psychology, Neuroanatomy, -physiology",
         "Thesis: Problem Solving in Ordinary Language Philosophy",
         "Final grade: 1.6"
       ]

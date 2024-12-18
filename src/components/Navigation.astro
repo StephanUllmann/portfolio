@@ -31,9 +31,9 @@ import { Icon } from "astro-icon/components";
             ><Icon name="email" /></a
           >
         </li>
-        <!-- <li>
+        <li>
           <a href="/cv">CV</a>
-        </li> -->
+        </li>
       </ul>
     </li>
   </ul>
@@ -85,8 +85,9 @@ import { Icon } from "astro-icon/components";
     display: flex;
     height: 100%;
     align-items: center;
-    li {
-      height: fit-content;
+    a {
+      display: grid;
+      place-content: center;
     }
   }
 
