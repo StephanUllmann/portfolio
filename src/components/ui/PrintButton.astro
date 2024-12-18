@@ -1,0 +1,117 @@
+<button id="print-button" class="print-button">&DownArrowBar;</button>
+
+<script>
+  function printDiv() {
+    // Get the specific element
+    const element = document.querySelector(".cv");
+    if (!element) return;
+
+    // Create a new window
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    // Get the original styles
+    const styles = Array.from(document.styleSheets)
+      .map((styleSheet) => {
+        try {
+          return Array.from(styleSheet.cssRules)
+            .map((rule) => rule.cssText)
+            .join("\n");
+        } catch {
+          // Handle CORS issues with external stylesheets
+          return "";
+        }
+      })
+      .join("\n");
+
+    // Create the print window content
+    printWindow.document.write(
+      `<!DOCTYPE html><html><head><title>Stephan_Ullmann_CV</title>
+          <style>` +
+        styles +
+        `</style>
+          <style>
+            @media print {
+              @page {
+                margin: 0;
+                size: A4;
+              }
+              
+            }
+          </style>
+        </head>
+        <body>` +
+        element.outerHTML +
+        "<script>" +
+        `  window.onload = function() {
+            const printSettings = {
+              pageSetup: { name: 'Stephan_Ullmann_CV.pdf' },
+              shouldPrintBackgrounds: true
+            };
+            
+            try {
+              const printOptions = { 
+                path: 'Stephan_Ullmann_CV.pdf',
+                printBackground: true
+              };
+              window.print(printOptions);
+            } catch(e) {
+              window.print();
+            }` +
+        "window.onafterprint = function() {window.close();};}" +
+        "<" +
+        "/script>" +
+        "</body></html>",
+    );
+    printWindow.document.close();
+  }
+
+  document.getElementById("print-button")!.addEventListener("click", printDiv);
+</script>
+
+<style>
+  @property --amount {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 50%;
+  }
+  .print-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 1.75rem;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    background-color: var(--base);
+    color: var(--accent);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    &::before {
+      --amount: 50%;
+      content: "";
+      background-image: radial-gradient(
+          var(--base) var(--amount),
+          transparent 90%
+        ),
+        linear-gradient(
+          var(--deg, 135deg) in oklch,
+          var(--primary),
+          var(--accent)
+        );
+      border-radius: 2rem;
+
+      position: absolute;
+      z-index: -1;
+      inset: -3px;
+      transition: all 300ms linear;
+    }
+    &:hover {
+      color: color-mix(in oklch, var(--accent), #fff 15%);
+    }
+    &:hover::before {
+      --amount: 40%;
+      transition: all 300ms linear;
+    }
+  }
+</style>

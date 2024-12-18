@@ -12,18 +12,18 @@ export const getStaticPaths = (async () => {
 
 const entry = await getEntry("blog", Astro.params.slug);
 console.log(Astro.params.slug);
-const { Content, headings } = await entry.render();
+const { Content } = await entry!.render();
 ---
 
-<BaseLayout title={entry.data.title}>
+<BaseLayout title={entry!.data.title}>
   <div class="center">
-    <h1>{entry.data.title}</h1>
-    <Tags tags={entry.data.tags} />
+    <h1>{entry!.data.title}</h1>
+    <Tags tags={entry!.data.tags} />
     <Image
-      width={entry.data.image?.x ?? 320}
-      height={entry.data.image?.y ?? 180}
-      src={entry.data.image?.src || ""}
-      alt={entry.data.image?.alt || ""}
+      width={entry!.data.image?.x ?? 320}
+      height={entry!.data.image?.y ?? 180}
+      src={entry!.data.image?.src || ""}
+      alt={entry!.data.image?.alt || ""}
     />
     <Content />
   </div>
