@@ -23,7 +23,7 @@ const iconmap: { [key: string]: string } = {
       alt={project.image.alt}
       width={230}
       height={135}
-      class="project-img"
+      class="fancy-border"
       style={{ animationDelay: 50 * index + "ms" }}
     />
     <div class="content">
@@ -46,11 +46,6 @@ const iconmap: { [key: string]: string } = {
 </li>
 
 <style>
-  @property --deg {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 45deg;
-  }
   .card {
     display: grid;
     justify-items: center;
@@ -75,10 +70,6 @@ const iconmap: { [key: string]: string } = {
     outline-offset: 0.12rem;
     animation: rotate 4000ms linear infinite alternate;
   }
-  .content {
-    padding: 0.5rem 1rem;
-  }
-
   @keyframes rotate {
     from {
       --deg: 5deg;
@@ -86,6 +77,9 @@ const iconmap: { [key: string]: string } = {
     to {
       --deg: 120deg;
     }
+  }
+  .content {
+    padding: 0.5rem 1rem;
   }
   h2 {
     font-size: 1.25rem;

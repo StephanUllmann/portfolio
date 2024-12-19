@@ -16,6 +16,24 @@
       "alt": "NextJS Talent Pool",
       "x": 1913,
       "y": 908
+    },
+    {
+      "src": "/projects/nine-mens/nine-mens-163812.png",
+      "alt": "TypeScript Nine Men's Morris",
+      "x": 1913,
+      "y": 908
+    },
+    {
+      "src": "/projects/talent-pool/talent-pool-1.png",
+      "alt": "NextJS Talent Pool",
+      "x": 1913,
+      "y": 908
+    },
+    {
+      "src": "/projects/nine-mens/nine-mens-164430.png",
+      "alt": "TypeScript Nine Men's Morris",
+      "x": 1913,
+      "y": 908
     }
   ],
   "description": "A simple Mill Board Game. PWA, online playable against a human opponent via WebSockets.",

@@ -13,14 +13,131 @@ export const getStaticPaths = (async () => {
   }));
 }) satisfies GetStaticPaths;
 
-// const entry = await getEntry("projects", Astro.params.slug);
-// const project = entry!.data;
 const { project } = Astro.props;
-// const { Content } = await render(project);
 ---
 
 <BaseLayout title={project.data.title}>
   <div class="center">
+    <web-carousel>
+      <div class="carousel-wrapper">
+        <button
+          class="fancy-btn scroll-btn scroll-btn-left"
+          data-direction="left">&vartriangleleft;</button
+        >
+        <div class="carousel fancy-border">
+          {
+            project.data.images.map((image) => (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.x || 500}
+                height={image.y || 300}
+              />
+            ))
+          }
+        </div>
+        <button
+          class="fancy-btn scroll-btn scroll-btn-right"
+          data-direction="right">&vartriangleright;</button
+        >
+      </div>
+    </web-carousel>
     <h1>{project.data.title}</h1>
+    <p>{project.data.description}</p>
+    <Tags tags={project.data.tags} />
   </div>
 </BaseLayout>
+
+<script>
+  class Carousel extends HTMLElement {
+    connectedCallback() {
+      const btnLeft = document.querySelector(
+        ".scroll-btn-left",
+      )! as HTMLButtonElement;
+      const btnRight = document.querySelector(
+        ".scroll-btn-right",
+      )! as HTMLButtonElement;
+      const carousel = document.querySelector(".carousel")!;
+      const carouselWidth = carousel.getBoundingClientRect().width;
+      const itemCount = [...carousel.childNodes].filter(
+        (c) => c.nodeName === "IMG",
+      ).length;
+
+      const totalWidth = itemCount * carouselWidth;
+      // + (itemCount - 1) * 16
+      const handleClick = (e: Event) => {
+        const direction =
+          (e.target as HTMLElement).dataset.direction === "left" ? -1 : 1;
+        console.log(totalWidth - carouselWidth);
+        if (carousel.scrollLeft + carouselWidth * direction <= 0)
+          carousel.scrollLeft = totalWidth;
+        else if (
+          totalWidth < carousel.scrollLeft + carouselWidth &&
+          direction > 0
+        )
+          carousel.scrollLeft = 0;
+        else carousel.scrollLeft += carouselWidth * direction;
+      };
+
+      btnLeft.addEventListener("click", handleClick);
+      btnRight.addEventListener("click", handleClick);
+    }
+  }
+  customElements.define("web-carousel", Carousel);
+</script>
+
+<style>
+  .center {
+    margin-block: 3rem;
+  }
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    /* height: fit-content; */
+    margin-inline: 2vmin;
+    aspect-ratio: 16/9;
+  }
+  .carousel {
+    margin-block: 1rem;
+    display: flex;
+    gap: 1rem;
+    overflow-x: scroll;
+    align-items: center;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @property --z {
+    syntax: "<number>";
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    scroll-snap-align: center;
+    border-radius: 1.2rem;
+  }
+
+  .scroll-btn {
+    position: absolute;
+    left: 1rem;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .scroll-btn-right {
+    left: auto;
+    right: 1rem;
+  }
+
+  .carousel-wrapper:has(.carousel > img:only-child) .scroll-btn {
+    visibility: hidden;
+  }
+</style>

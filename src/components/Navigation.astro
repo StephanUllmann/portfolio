@@ -159,7 +159,11 @@ import { Icon } from "astro-icon/components";
 
   const handleWheel = (e: WheelEvent) => {
     if ((e.target as Element).closest("nav")) handlePageChange(e);
-    else if (window.location.pathname.startsWith("/blog/")) return;
+    else if (
+      window.location.pathname.startsWith("/blog/") ||
+      window.location.pathname.startsWith("/projects/")
+    )
+      return;
     else {
       const main = (e.target as Element).closest("main");
       if (
