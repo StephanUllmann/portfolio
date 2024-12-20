@@ -40,6 +40,7 @@
   --fs-l: clamp(2.37rem, 2.8vi + 1.67rem, 3.56rem);
 
   --line-height: calc(2px + 3ex + 2px);
+  interpolate-size: allow-keywords;
 }
 /* ::-webkit-scrollbar-track {
   width: 2rem;
@@ -326,5 +327,21 @@ pre:has(code) {
   }
   to {
     --deg: 120deg;
+  }
+}
+
+.iconlist a:hover {
+  background-color: transparent;
+  color: hsla(from var(--base-light) h s l / 66%);
+  transition: color 100ms linear;
+}
+
+.iconlist {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  a {
+    display: grid;
+    place-content: center;
   }
 }

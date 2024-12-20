@@ -10,8 +10,6 @@ export const getStaticPaths = (async () => {
   return blogEntries.map((e) => ({ params: { id: e.id }, props: { post: e } }));
 }) satisfies GetStaticPaths;
 
-// const entry = await getEntry("blog", Astro.params.slug);
-// console.log(Astro.params.slug);
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
