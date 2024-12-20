@@ -20,9 +20,6 @@ importers:
       astro-icon:
         specifier: ^1.1.4
         version: 1.1.4
-      htmx.org:
-        specifier: ^1.9.12
-        version: 1.9.12
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -1195,9 +1192,6 @@ packages:
 
   htmlparser2@9.1.0:
     resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
-
-  htmx.org@1.9.12:
-    resolution: {integrity: sha512-VZAohXyF7xPGS52IM8d1T1283y+X4D+Owf3qY1NZ9RuBypyu9l8cGsxUMAG5fEAb/DhT7rDoJ9Hpu5/HxFD3cw==}
 
   http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
@@ -3368,8 +3362,6 @@ snapshots:
       domhandler: 5.0.3
       domutils: 3.1.0
       entities: 4.5.0
-
-  htmx.org@1.9.12: {}
 
   http-cache-semantics@4.1.1: {}
 

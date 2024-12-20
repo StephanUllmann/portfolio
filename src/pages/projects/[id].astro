@@ -50,37 +50,55 @@ const { project } = Astro.props;
 
 <script>
   class Carousel extends HTMLElement {
-    connectedCallback() {
-      const btnLeft = document.querySelector(
+    #btnLeft;
+    #btnRight;
+    #carousel;
+    #carouselWidth;
+    #itemCount;
+    #totalWidth;
+
+    constructor() {
+      super();
+      this.#btnLeft = this.querySelector(
         ".scroll-btn-left",
       )! as HTMLButtonElement;
-      const btnRight = document.querySelector(
+      this.#btnRight = this.querySelector(
         ".scroll-btn-right",
       )! as HTMLButtonElement;
-      const carousel = document.querySelector(".carousel")!;
-      const carouselWidth = carousel.getBoundingClientRect().width;
-      const itemCount = [...carousel.childNodes].filter(
+      this.#carousel = this.querySelector(".carousel")!;
+      this.#carouselWidth = this.#carousel.getBoundingClientRect().width;
+      this.#itemCount = [...this.#carousel.childNodes].filter(
         (c) => c.nodeName === "IMG",
       ).length;
 
-      const totalWidth = itemCount * carouselWidth;
-      // + (itemCount - 1) * 16
-      const handleClick = (e: Event) => {
-        const direction =
-          (e.target as HTMLElement).dataset.direction === "left" ? -1 : 1;
-        console.log(totalWidth - carouselWidth);
-        if (carousel.scrollLeft + carouselWidth * direction <= 0)
-          carousel.scrollLeft = totalWidth;
-        else if (
-          totalWidth < carousel.scrollLeft + carouselWidth &&
-          direction > 0
-        )
-          carousel.scrollLeft = 0;
-        else carousel.scrollLeft += carouselWidth * direction;
-      };
+      this.#totalWidth = this.#itemCount * this.#carouselWidth;
+    }
+    connectedCallback() {
+      this.#carousel.scrollLeft = 0;
+      this.#btnLeft.addEventListener("click", this.#handleClick);
+      this.#btnRight.addEventListener("click", this.#handleClick);
+    }
 
-      btnLeft.addEventListener("click", handleClick);
-      btnRight.addEventListener("click", handleClick);
+    disconnectedCallback() {
+      this.#btnLeft.removeEventListener("click", this.#handleClick);
+      this.#btnRight.removeEventListener("click", this.#handleClick);
+    }
+
+    #handleClick = (e: Event) => {
+      const direction =
+        (e.target as HTMLElement).dataset.direction === "left" ? -1 : 1;
+      this.#moveCarousel(direction);
+    };
+
+    #moveCarousel(direction: -1 | 1) {
+      if (this.#carousel.scrollLeft + this.#carouselWidth * direction <= 0)
+        this.#carousel.scrollLeft = this.#totalWidth;
+      else if (
+        this.#totalWidth < this.#carousel.scrollLeft + this.#carouselWidth &&
+        direction > 0
+      )
+        this.#carousel.scrollLeft = 0;
+      else this.#carousel.scrollLeft += this.#carouselWidth * direction;
     }
   }
   customElements.define("web-carousel", Carousel);
