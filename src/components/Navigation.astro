@@ -6,7 +6,7 @@ import { Icon } from "astro-icon/components";
   <ul id="navlist" class="navlist">
     <li><a href="/">Stephan Ullmann</a></li>
     <li><a href="/profile">Web Developer</a></li>
-    <!-- <li><a href="/projects">Projects</a></li> -->
+    <li><a href="/projects">Projects</a></li>
     <!-- <li><a href="/blog">Blog</a></li> -->
     <li>
       <ul class="iconlist">
@@ -75,21 +75,6 @@ import { Icon } from "astro-icon/components";
   a:hover {
     background-color: hsla(from var(--base-light) h s l / 15%);
   }
-  .iconlist a:hover {
-    background-color: transparent;
-    color: hsla(from var(--base-light) h s l / 66%);
-    transition: color 100ms linear;
-  }
-
-  .iconlist {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    a {
-      display: grid;
-      place-content: center;
-    }
-  }
 
   .active {
     background-color: hsla(from var(--base-light) h s l / 5%);
@@ -141,25 +126,22 @@ import { Icon } from "astro-icon/components";
   }
 
   const handlePageChange = debounce((e: WheelEvent) => {
-    // const handlePageChange = (e: WheelEvent) => {
     const isDown = e.deltaY > 0;
     if (isDown) {
       index = index === links.length - 1 ? 0 : index + 1;
     } else {
       index = index === 0 ? links.length - 1 : index - 1;
     }
-    // (
-    //   document.querySelector(
-    //     `[href="${new URL(links[index]).pathname}"]`,
-    //   )! as HTMLAnchorElement
-    // ).click();
     navigate(links[index]);
-    // };
   }, 100);
 
   const handleWheel = (e: WheelEvent) => {
     if ((e.target as Element).closest("nav")) handlePageChange(e);
-    else if (window.location.pathname.startsWith("/blog/")) return;
+    else if (
+      window.location.pathname.startsWith("/blog/") ||
+      window.location.pathname.startsWith("/projects/")
+    )
+      return;
     else {
       const main = (e.target as Element).closest("main");
       if (

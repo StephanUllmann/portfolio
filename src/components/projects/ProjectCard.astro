@@ -2,10 +2,11 @@
 interface Props {
   project: Project;
   href: string;
+  index: number;
 }
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-const { project, href } = Astro.props;
+const { project, href, index } = Astro.props;
 const iconmap: { [key: string]: string } = {
   css: "css",
   ts: "ts",
@@ -13,19 +14,19 @@ const iconmap: { [key: string]: string } = {
   go: "go",
   csharp: "csharp",
 };
+// <!-- transition:name={project.title} -->
 ---
 
 <li>
   <a href={`/projects/${href}`} class="card">
-    <!-- <div class="img-wrapper"> -->
     <Image
       src={project.image.src}
       alt={project.image.alt}
-      width={320}
-      height={180}
-      class="project-img"
+      width={230}
+      height={135}
+      class="fancy-border"
+      style={{ animationDelay: 50 * index + "ms" }}
     />
-    <!-- </div> -->
     <div class="content">
       <h2>{project.title}</h2>
       <ul>
@@ -46,11 +47,6 @@ const iconmap: { [key: string]: string } = {
 </li>
 
 <style>
-  @property --deg {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 45deg;
-  }
   .card {
     display: grid;
     justify-items: center;
@@ -58,7 +54,6 @@ const iconmap: { [key: string]: string } = {
   .img-wrapper {
     border-radius: 1rem;
     overflow: clip;
-    height: 120px;
   }
   .project-img {
     --deg: 25deg;
@@ -74,22 +69,21 @@ const iconmap: { [key: string]: string } = {
     object-fit: cover;
     outline: 0.5rem solid var(--base);
     outline-offset: 0.12rem;
-    animation: rotate 5000ms linear infinite alternate;
+    animation: rotate 4000ms linear infinite alternate;
+  }
+  @keyframes rotate {
+    from {
+      --deg: 5deg;
+    }
+    to {
+      --deg: 120deg;
+    }
   }
   .content {
     padding: 0.5rem 1rem;
   }
-
-  @keyframes rotate {
-    from {
-      --deg: 25deg;
-    }
-    to {
-      --deg: 70deg;
-    }
-  }
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   ul {
     display: flex;
@@ -97,7 +91,7 @@ const iconmap: { [key: string]: string } = {
     gap: 0.5rem;
 
     & > * {
-      font-size: var(--fs-xs);
+      font-size: 0.815rem;
     }
   }
 </style>

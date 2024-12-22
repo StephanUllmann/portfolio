@@ -8,6 +8,6 @@ const allPlogPosts = await getCollection("blog");
 <BaseLayout title="Blog">
   <section transition:name="main" transition:animate={customTransition}>
     <h1>Here's the blog!</h1>
-    {allPlogPosts.map((p) => <a href={`/blog/${p.slug}`}>{p.data.title}</a>)}
+    {allPlogPosts.map((p) => <a href={`/blog/${p.id}`}>{p.data.title}</a>)}
   </section>
 </BaseLayout>

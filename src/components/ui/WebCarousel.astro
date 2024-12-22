@@ -1,0 +1,150 @@
+<web-carousel>
+  <div class="carousel-wrapper">
+    <button class="fancy-btn scroll-btn scroll-btn-left" data-direction="left"
+      >&vartriangleleft;</button
+    >
+    <div class="carousel fancy-border">
+      <slot />
+    </div>
+    <button class="fancy-btn scroll-btn scroll-btn-right" data-direction="right"
+      >&vartriangleright;</button
+    >
+  </div>
+</web-carousel>
+
+<script>
+  class Carousel extends HTMLElement {
+    #btnLeft;
+    #btnRight;
+    #wrapper;
+    #carousel;
+    #carouselWidth;
+    #itemCount;
+    #totalWidth;
+    #animationFrameId: null | number = null;
+    #delay = 7000;
+    #lastTime: null | number = null;
+
+    constructor() {
+      super();
+      this.#btnLeft = this.querySelector(
+        ".scroll-btn-left",
+      )! as HTMLButtonElement;
+      this.#btnRight = this.querySelector(
+        ".scroll-btn-right",
+      )! as HTMLButtonElement;
+      this.#wrapper = this.querySelector(".carousel-wrapper")!;
+      this.#carousel = this.querySelector(".carousel")! as HTMLDivElement;
+      this.#carouselWidth = this.#carousel.getBoundingClientRect().width;
+      this.#itemCount = [...this.#carousel.childNodes].filter(
+        (c) => c.nodeName === "IMG",
+      ).length;
+
+      this.#totalWidth = this.#itemCount * this.#carouselWidth;
+    }
+
+    connectedCallback() {
+      const doPlay = this.#itemCount > 1;
+      this.#carousel.scrollLeft = 0;
+      this.#btnLeft.addEventListener("click", this.#handleClick);
+      this.#btnRight.addEventListener("click", this.#handleClick);
+
+      if (doPlay) {
+        this.#wrapper.addEventListener("mouseenter", this.#stopCarousel);
+        this.#wrapper.addEventListener("mouseleave", this.#startCarousel);
+        this.#startCarousel();
+      }
+    }
+
+    disconnectedCallback() {
+      this.#btnLeft.removeEventListener("click", this.#handleClick);
+      this.#btnRight.removeEventListener("click", this.#handleClick);
+      this.#wrapper.removeEventListener("mouseenter", this.#stopCarousel);
+      this.#wrapper.removeEventListener("mouseleave", this.#startCarousel);
+      this.#stopCarousel();
+    }
+
+    #startCarousel = () => {
+      const move = (timestamp: number) => {
+        if (!this.#lastTime) this.#lastTime = timestamp;
+
+        if (timestamp - this.#lastTime! >= this.#delay) {
+          this.#moveCarousel(1);
+          this.#lastTime = timestamp;
+        }
+
+        this.#animationFrameId = requestAnimationFrame(move);
+      };
+
+      this.#animationFrameId = requestAnimationFrame(move);
+    };
+
+    #stopCarousel = () => {
+      if (this.#animationFrameId) {
+        cancelAnimationFrame(this.#animationFrameId);
+        this.#animationFrameId = null;
+        this.#lastTime = null;
+      }
+    };
+    #handleClick = (e: Event) => {
+      const direction =
+        (e.target as HTMLElement).dataset.direction === "left" ? -1 : 1;
+      this.#moveCarousel(direction);
+    };
+
+    #moveCarousel(direction: -1 | 1) {
+      // this.#carousel.style.scrollBehavior = "unset";
+      if (this.#carousel.scrollLeft + this.#carouselWidth * direction <= 0)
+        this.#carousel.scrollLeft = this.#totalWidth;
+      else if (
+        this.#totalWidth < this.#carousel.scrollLeft + this.#carouselWidth &&
+        direction > 0
+      )
+        this.#carousel.scrollLeft = 0;
+      else {
+        // this.#carousel.style.scrollBehavior = "smooth";
+        this.#carousel.scrollLeft += this.#carouselWidth * direction;
+      }
+    }
+  }
+  customElements.define("web-carousel", Carousel);
+</script>
+
+<style>
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+  }
+  .carousel {
+    margin-block: 1rem;
+    display: flex;
+    gap: 1rem;
+    overflow-x: scroll;
+    align-items: center;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .scroll-btn {
+    position: absolute;
+    left: 1rem;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .scroll-btn-right {
+    left: auto;
+    right: 1rem;
+  }
+
+  .carousel-wrapper:has(.carousel > img:only-child) .scroll-btn {
+    visibility: hidden;
+  }
+</style>

@@ -10,8 +10,8 @@ const allProjects = await getCollection("projects");
   <section transition:name="main" transition:animate={customTransition}>
     <ul>
       {
-        allProjects.map((p) => (
-          <ProjectCard project={p.data as Project} href={p.id} />
+        allProjects.map((p, ind) => (
+          <ProjectCard index={ind} project={p.data as Project} href={p.id} />
         ))
       }
     </ul>
@@ -19,9 +19,13 @@ const allProjects = await getCollection("projects");
 </BaseLayout>
 
 <style>
+  section {
+    padding: 5rem;
+  }
   ul {
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
+    justify-content: space-evenly;
     flex-wrap: wrap;
   }
 </style>
