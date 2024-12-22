@@ -6,7 +6,7 @@ import { Icon } from "astro-icon/components";
   <ul id="navlist" class="navlist">
     <li><a href="/">Stephan Ullmann</a></li>
     <li><a href="/profile">Web Developer</a></li>
-    <li><a href="/projects">Projects</a></li>
+    <!-- <li><a href="/projects">Projects</a></li> -->
     <!-- <li><a href="/blog">Blog</a></li> -->
     <li>
       <ul class="iconlist">
@@ -43,17 +43,25 @@ import { Icon } from "astro-icon/components";
   .navlist {
     position: sticky;
     top: 0;
-    right:;
-    display: grid;
+    right: 0;
+    /* display: grid; */
     height: 100dvh;
-    grid-template-rows: repeat(5, 1fr);
-    grid-auto-rows: 19.99vh;
+    /* grid-template-rows: repeat(5, 1fr);
+    grid-auto-rows: 19.99vh; */
     align-items: center;
     list-style: none;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
+
+    & li:last-child {
+      margin-top: auto;
+    }
   }
   .navlist > li {
-    height: 100%;
+    flex-grow: 0;
+    /* height: 100%; */
+    width: 100%;
     border-color: var(--base-light);
     border-color: light-dark(var(--base), var(--base-light));
 
