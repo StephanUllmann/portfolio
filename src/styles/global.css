@@ -125,7 +125,7 @@ hr {
 }
 
 main {
-  background-color: color-mix(in oklch, var(--base) 97.5%, var(--accent));
+  /* background-color: color-mix(in oklch, var(--base) 97.5%, var(--accent)); */
   border-right: 1px solid;
   border-color: var(--base-light);
   /* border-color: light-dark(var(--base), var(--base-light)); */
@@ -316,7 +316,7 @@ pre:has(code) {
   border-radius: 1.2rem;
   overflow: clip;
   object-fit: cover;
-  /* outline: 0.5rem solid var(--base); */
+  outline: 0.5rem solid var(--base);
   outline-offset: 0.12rem;
   animation: rotate-border 4000ms linear infinite alternate;
 }

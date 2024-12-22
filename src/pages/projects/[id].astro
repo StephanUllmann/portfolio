@@ -16,6 +16,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { project } = Astro.props;
+// transition:name={project.data.title}
 ---
 
 <BaseLayout title={project.data.title}>
@@ -76,6 +77,9 @@ const { project } = Astro.props;
       scroll-snap-align: center;
       border-radius: 1.2rem;
     }
+  }
+  h1 {
+    margin-block: 2rem;
   }
   .tags-wrapper {
     display: flex;
