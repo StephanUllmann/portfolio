@@ -19,19 +19,6 @@ import { customTransition } from "../utils/viewTransition";
         <li><Icon name="git" /></li>
       </ul>
     </div>
-    <!-- <div class="spark" style="--delay: 0ms;--dur: 9341ms;--p:85% 5%;">
-      <Icon name="css" />
-    </div>
-    <div class="spark" style="--delay: 123ms;--dur: 8412ms;--p:10% 60%;">
-      <Icon name="go" />
-    </div>
-    <div class="spark" style="--delay: 846ms;--dur: 9344ms;--p: 5% 2%;">
-      <Icon name="git" />
-    </div>
-    <div class="spark" style="--delay: 1024ms;--dur: 5341ms;--p: 85% 80%;">
-      <Icon name="csharp" />
-      <Icon name="ts" />
-    </div> -->
   </section>
 </BaseLayout>
 
@@ -66,7 +53,9 @@ import { customTransition } from "../utils/viewTransition";
   }
   .iconlist {
     display: flex;
-    justify-content: space-between;
+    column-gapap: 1rem;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
   }
   li {
     display: grid;
@@ -137,6 +126,10 @@ import { customTransition } from "../utils/viewTransition";
       height: 100%;
       /* filter: saturate(0.75); */
     }
+  }
+
+  h1 {
+    margin-bottom: 1rem;
   }
 
   @keyframes blink {
