@@ -142,7 +142,7 @@ main {
 }
 
 section {
-  min-height: 99.5vb;
+  min-height: 99.5dvh;
   align-content: center;
   width: 100%;
   padding-inline: 1rem;
