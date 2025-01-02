@@ -21,6 +21,7 @@
     #carouselWidth;
     #itemCount;
     #totalWidth;
+    #firstItem;
     #animationFrameId: null | number = null;
     #delay = 7000;
     #lastTime: null | number = null;
@@ -39,13 +40,15 @@
       this.#itemCount = [...this.#carousel.childNodes].filter(
         (c) => c.nodeName === "IMG",
       ).length;
-
+      this.#firstItem = this.#carousel.children[0];
       this.#totalWidth = this.#itemCount * this.#carouselWidth;
     }
 
     connectedCallback() {
+      this.#carousel.style.overflowX = "scroll";
       const doPlay = this.#itemCount > 1;
       this.#carousel.scrollLeft = 0;
+      this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
       this.#btnLeft.addEventListener("click", this.#handleClick);
       this.#btnRight.addEventListener("click", this.#handleClick);
 
@@ -54,14 +57,41 @@
         this.#wrapper.addEventListener("mouseleave", this.#startCarousel);
         this.#startCarousel();
       }
+
+      document.addEventListener("astro:before-preparation", (event) => {
+        this.#carousel.innerHTML = "";
+        this.#carousel.append(this.#firstItem);
+        // this.#firstItem.scrollIntoView({
+        //   block: "nearest",
+        //   inline: "center",
+        //   behavior: "instant",
+        // });
+        // this.#carousel.style.overflowX = "clip";
+      });
+      document.addEventListener("astro:before-swap", (event) => {
+        console.log("BEFORE SWAP");
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        console.log("PAGE LOAD");
+      });
+
+      document.addEventListener("astro:after-preparation", () => {
+        console.log("AFTER PREP");
+      });
+
+      // document.addEventListener("astro:after-swap", () => {
+      //   this.#carousel.innerHTML = "";
+      //   [...this.#items].forEach((item) => this.#carousel.append(item));
+      // });
     }
 
     disconnectedCallback() {
+      this.#stopCarousel();
       this.#btnLeft.removeEventListener("click", this.#handleClick);
       this.#btnRight.removeEventListener("click", this.#handleClick);
       this.#wrapper.removeEventListener("mouseenter", this.#stopCarousel);
       this.#wrapper.removeEventListener("mouseleave", this.#startCarousel);
-      this.#stopCarousel();
     }
 
     #startCarousel = () => {
@@ -93,7 +123,11 @@
     };
 
     #moveCarousel(direction: -1 | 1) {
-      // this.#carousel.style.scrollBehavior = "unset";
+      if (direction === -1) {
+        this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
+      } else {
+        this.#carousel.append(this.#carousel.children[0]);
+      }
       if (this.#carousel.scrollLeft + this.#carouselWidth * direction <= 0)
         this.#carousel.scrollLeft = this.#totalWidth;
       else if (
@@ -102,7 +136,6 @@
       )
         this.#carousel.scrollLeft = 0;
       else {
-        // this.#carousel.style.scrollBehavior = "smooth";
         this.#carousel.scrollLeft += this.#carouselWidth * direction;
       }
     }
@@ -120,7 +153,8 @@
     margin-block: 1rem;
     display: flex;
     gap: 1rem;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
+    overflow-x: clip;
     align-items: center;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -137,6 +171,7 @@
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
   }
 
   .scroll-btn-right {

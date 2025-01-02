@@ -338,10 +338,4 @@ pre:has(code) {
 
 .iconlist {
   display: flex;
-  height: 100%;
-  align-items: center;
-  a {
-    display: grid;
-    place-content: center;
-  }
 }

@@ -16,7 +16,6 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { project } = Astro.props;
-// transition:name={project.data.title}
 ---
 
 <BaseLayout title={project.data.title}>
@@ -31,6 +30,7 @@ const { project } = Astro.props;
               width={image.x || 500}
               height={image.y || 300}
               loading={ind > 0 ? "lazy" : "eager"}
+              transition:name={ind === 0 ? project.id + "-image" : undefined}
             />
           ))}
         </WebCarousel>
@@ -42,6 +42,7 @@ const { project } = Astro.props;
           height={project.data.images[0].y || 300}
           loading={"eager"}
           class={"fancy-border"}
+          transition:name={project.id + "-image"}
         />
       )
     }

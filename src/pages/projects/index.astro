@@ -7,7 +7,8 @@ const allProjects = await getCollection("projects");
 ---
 
 <BaseLayout>
-  <section transition:name="main" transition:animate={customTransition}>
+  <!-- <section transition:name="main" transition:animate={customTransition}> -->
+  <section>
     <ul>
       {
         allProjects.map((p, ind) => (
