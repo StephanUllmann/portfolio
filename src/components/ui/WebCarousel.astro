@@ -48,7 +48,6 @@
       this.#carousel.style.overflowX = "scroll";
       const doPlay = this.#itemCount > 1;
       this.#carousel.scrollLeft = 0;
-      this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
       this.#btnLeft.addEventListener("click", this.#handleClick);
       this.#btnRight.addEventListener("click", this.#handleClick);
 
@@ -58,32 +57,30 @@
         this.#startCarousel();
       }
 
-      document.addEventListener("astro:before-preparation", (event) => {
-        this.#carousel.innerHTML = "";
-        this.#carousel.append(this.#firstItem);
-        // this.#firstItem.scrollIntoView({
-        //   block: "nearest",
-        //   inline: "center",
-        //   behavior: "instant",
-        // });
-        // this.#carousel.style.overflowX = "clip";
-      });
-      document.addEventListener("astro:before-swap", (event) => {
-        console.log("BEFORE SWAP");
-      });
+      document.addEventListener(
+        "astro:before-preparation",
+        this.#prepareBackNavigationForViewTransition.bind(this),
+      );
 
-      document.addEventListener("astro:page-load", () => {
-        console.log("PAGE LOAD");
-      });
+      document.addEventListener(
+        "astro:page-load",
+        this.#handleImagesOnPageLoad.bind(this),
+      );
+      // [...this.#carousel.children].forEach(
+      //   (img) => ((img as HTMLElement).style.display = "block"),
+      // );
+      this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
+    }
 
-      document.addEventListener("astro:after-preparation", () => {
-        console.log("AFTER PREP");
-      });
+    #prepareBackNavigationForViewTransition() {
+      this.#carousel.innerHTML = "";
+      this.#carousel.append(this.#firstItem);
+    }
 
-      // document.addEventListener("astro:after-swap", () => {
-      //   this.#carousel.innerHTML = "";
-      //   [...this.#items].forEach((item) => this.#carousel.append(item));
-      // });
+    #handleImagesOnPageLoad() {
+      [...this.#carousel.children].forEach(
+        (img) => ((img as HTMLElement).style.display = "block"),
+      );
     }
 
     disconnectedCallback() {
@@ -92,6 +89,14 @@
       this.#btnRight.removeEventListener("click", this.#handleClick);
       this.#wrapper.removeEventListener("mouseenter", this.#stopCarousel);
       this.#wrapper.removeEventListener("mouseleave", this.#startCarousel);
+      document.removeEventListener(
+        "astro:before-preparation",
+        this.#prepareBackNavigationForViewTransition,
+      );
+      document.removeEventListener(
+        "astro:page-load",
+        this.#handleImagesOnPageLoad,
+      );
     }
 
     #startCarousel = () => {
@@ -148,6 +153,7 @@
     position: relative;
     width: 100%;
     height: fit-content;
+    overflow: hidden;
   }
   .carousel {
     margin-block: 1rem;
