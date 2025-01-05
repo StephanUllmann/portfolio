@@ -5,14 +5,14 @@
   "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
   "ghLink": "https://github.com/StephanUllmann/mill-game",
   "image": {
-    "src": "/projects/nine-mens/nine-mens-163812.png",
+    "src": "/src/images/nine-mens/nine-mens-163812.png",
     "alt": "TypeScript Nine Men's Morris",
     "x": 1913,
     "y": 908
   },
   "images": [
     {
-      "src": "/projects/nine-mens/nine-mens-163812.png",
+      "src": "/src/images/nine-mens/nine-mens-163812.png",
       "alt": "TypeScript Nine Men's Morris",
       "x": 1913,
       "y": 908

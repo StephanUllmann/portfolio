@@ -5,32 +5,32 @@
   "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
   "ghLink": "https://github.com/StephanUllmann/mill-game",
   "image": {
-    "src": "/projects/talent-pool/talent-pool-1.png",
+    "src": "/src/images/talent-pool/talent-pool-1.png",
     "alt": "NextJS Talent Pool",
     "x": 1913,
     "y": 908
   },
   "images": [
     {
-      "src": "/projects/talent-pool/talent-pool-1.png",
+      "src": "/src/images/talent-pool/talent-pool-1.png",
       "alt": "NextJS Talent Pool",
       "x": 1913,
       "y": 908
     },
     {
-      "src": "/projects/nine-mens/nine-mens-163812.png",
+      "src": "/src/images/nine-mens/nine-mens-163812.png",
       "alt": "TypeScript Nine Men's Morris",
       "x": 1913,
       "y": 908
     },
     {
-      "src": "/projects/talent-pool/talent-pool-1.png",
+      "src": "/src/images/talent-pool/talent-pool-1.png",
       "alt": "NextJS Talent Pool",
       "x": 1913,
       "y": 908
     },
     {
-      "src": "/projects/nine-mens/nine-mens-164430.png",
+      "src": "/src/images/nine-mens/nine-mens-164430.png",
       "alt": "TypeScript Nine Men's Morris",
       "x": 1913,
       "y": 908

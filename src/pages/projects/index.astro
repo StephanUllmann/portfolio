@@ -1,13 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { customTransition } from "../../utils/viewTransition";
 import ProjectCard from "../../components/projects/ProjectCard.astro";
 const allProjects = await getCollection("projects");
 ---
 
 <BaseLayout>
-  <!-- <section transition:name="main" transition:animate={customTransition}> -->
   <section>
     <ul>
       {
