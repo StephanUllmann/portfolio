@@ -146,7 +146,8 @@
       }
     }
   }
-  customElements.define("web-carousel", Carousel);
+  customElements.get("web-carousel") ||
+    customElements.define("web-carousel", Carousel);
 </script>
 
 <style>
