@@ -22,13 +22,10 @@ const iconmap: { [key: string]: string } = {
   go: "go",
   csharp: "csharp",
 };
-// <!-- transition:name={project.title} -->
-// width={230}
-// height={135}
 ---
 
 <li>
-  <a href={`/projects/${href}`} class="card">
+  <a href={`/projects/${href}`} class="card" data-astro-prefetch="hover">
     <Image
       src={images[project.image.src]()}
       alt={project.image.alt}
@@ -82,6 +79,7 @@ const iconmap: { [key: string]: string } = {
   }
   h2 {
     font-size: 1.25rem;
+    text-align: center;
   }
   ul {
     display: flex;

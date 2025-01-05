@@ -1,7 +1,7 @@
 {
   "$schema": "../../../.astro/collections/projects.schema.json",
   "title": "WBS Talent Pool",
-  "tags": ["NextJS", "TypeScript", "MongoDB", "Tailwind CSS", "Daisy UI"],
+  "tags": ["TypeScript", "NextJS", "MongoDB", "Tailwind CSS", "Daisy UI"],
   "deployedLink": "https://talent-pool.wbscodingschool.com/en",
   "image": {
     "src": "/src/images/talent-pool/talent-pool-1.png",
