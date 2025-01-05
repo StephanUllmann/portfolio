@@ -1,42 +1,23 @@
 {
   "$schema": "../../../.astro/collections/projects.schema.json",
   "title": "WBS Talent Pool",
-  "tags": ["NextJS", "TypeScript"],
-  "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
-  "ghLink": "https://github.com/StephanUllmann/mill-game",
+  "tags": ["NextJS", "TypeScript", "MongoDB", "Tailwind CSS", "Daisy UI"],
+  "deployedLink": "https://talent-pool.wbscodingschool.com/en",
   "image": {
     "src": "/src/images/talent-pool/talent-pool-1.png",
-    "alt": "NextJS Talent Pool",
+    "alt": "WNS CODING SCHOOL Talent Pool, built with Next.js 15",
     "x": 1913,
     "y": 908
   },
   "images": [
     {
       "src": "/src/images/talent-pool/talent-pool-1.png",
-      "alt": "NextJS Talent Pool",
-      "x": 1913,
-      "y": 908
-    },
-    {
-      "src": "/src/images/nine-mens/nine-mens-163812.png",
-      "alt": "TypeScript Nine Men's Morris",
-      "x": 1913,
-      "y": 908
-    },
-    {
-      "src": "/src/images/talent-pool/talent-pool-1.png",
-      "alt": "NextJS Talent Pool",
-      "x": 1913,
-      "y": 908
-    },
-    {
-      "src": "/src/images/nine-mens/nine-mens-164430.png",
-      "alt": "TypeScript Nine Men's Morris",
+      "alt": "WNS CODING SCHOOL Talent Pool, built with Next.js 15",
       "x": 1913,
       "y": 908
     }
   ],
-  "description": "A simple Mill Board Game. PWA, online playable against a human opponent via WebSockets.",
+  "description": "A team project for WBS CODING SCHOOL. Built with Next.js 15, server-side rendered. Bootcamp grads can create a portfolio page, get feedback from WBS Career Service and chat with partner companies.",
   "publishDate": "2024-11-29",
   "relatedPosts": ["test"]
 }

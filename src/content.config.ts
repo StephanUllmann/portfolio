@@ -14,7 +14,7 @@ const blogCollection = defineCollection({
         y: z.number().optional(),
       })
       .optional(),
-    publishDate: z.string().transform((str) => new Date(str)),
+    publishDate: z.string().transform((str: string) => new Date(str)),
     relatedPosts: z.array(reference("blog")).optional(),
   }),
 });
@@ -23,8 +23,8 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     tags: z.array(z.string()),
-    deployedLink: z.string().url(),
-    ghLink: z.string().url(),
+    deployedLink: z.string().url().optional(),
+    ghLink: z.string().url().optional(),
     image: z.object({
       src: z.string(),
       alt: z.string(),
@@ -40,7 +40,7 @@ const projectsCollection = defineCollection({
       }),
     ),
     description: z.string(),
-    publishDate: z.string().transform((str) => new Date(str)),
+    publishDate: z.string().transform((str: string) => new Date(str)),
     relatedPosts: z.array(reference("blog")).optional(),
   }),
 });

@@ -1,7 +1,7 @@
 {
   "$schema": "../../../.astro/collections/projects.schema.json",
   "title": "Nine Men's Morris",
-  "tags": ["CSS", "TypeScript", "Game", "PWA"],
+  "tags": ["CSS", "TypeScript", "Game", "PWA", "Bun"],
   "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
   "ghLink": "https://github.com/StephanUllmann/mill-game",
   "image": {
@@ -16,9 +16,24 @@
       "alt": "TypeScript Nine Men's Morris",
       "x": 1913,
       "y": 908
+    },
+    {
+      "src": "/src/images/nine-mens/nine-mens-163829.png",
+      "alt": "Setting piesces on the board."
+    },
+    {
+      "src": "/src/images/nine-mens/nine-mens-164348.png",
+      "alt": "The board is filling up. The player's name is displayed on the top."
+    },
+    {
+      "src": "/src/images/nine-mens/nine-mens-164430.png",
+      "alt": "The white player has a mill. All pieces by player black, that can be removed, are highlighted."
+    },
+    {
+      "src": "/src/images/nine-mens/nine-mens-164500.png",
+      "alt": "Black player is moving a piece."
     }
   ],
   "description": "A simple Mill Board Game. PWA, online playable against a human opponent via WebSockets.",
-  "publishDate": "2024-11-29",
-  "relatedPosts": ["test"]
+  "publishDate": "2024-11-29"
 }

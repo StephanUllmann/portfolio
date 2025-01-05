@@ -57,19 +57,33 @@ for (const image of project.data.images) {
     }
     <h1>{project.data.title}</h1>
     <p>{project.data.description}</p>
-    <div class="tags-wrapper iconlist">
-      <a
-        href={project.data.ghLink}
-        aria-description="GitHub Link"
-        target="_blank"
-        rel="noopener noreferrer"><Icon name="github" /></a
-      >
-      <a
-        href={project.data.deployedLink}
-        aria-description="Website Link"
-        target="_blank"
-        rel="noopener noreferrer"><Icon name="website" /></a
-      >
+    <div class="tags-wrapper">
+      <div class="iconlist">
+        {
+          project.data.ghLink && (
+            <a
+              href={project.data.ghLink}
+              aria-description="GitHub Link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="github" />
+            </a>
+          )
+        }
+        {
+          project.data.deployedLink && (
+            <a
+              href={project.data.deployedLink}
+              aria-description="Website Link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="website" />
+            </a>
+          )
+        }
+      </div>
       <Tags tags={project.data.tags} />
     </div>
   </div>
@@ -92,9 +106,10 @@ for (const image of project.data.images) {
     margin-block: 2rem;
   }
   .tags-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 2rem;
-    gap: 1.5rem;
+    font-size: 1.5rem;
+    .iconlist {
+      gap: 1rem;
+      margin-block: 1rem;
+    }
   }
 </style>
