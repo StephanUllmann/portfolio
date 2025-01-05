@@ -341,5 +341,5 @@ pre:has(code) {
 }
 
 .carousel.carousel img:not(:nth-of-type(2)) {
-  display: none;
+  visibility: hidden;
 }

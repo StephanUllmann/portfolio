@@ -66,9 +66,7 @@
         "astro:page-load",
         this.#handleImagesOnPageLoad.bind(this),
       );
-      // [...this.#carousel.children].forEach(
-      //   (img) => ((img as HTMLElement).style.display = "block"),
-      // );
+
       this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
     }
 
@@ -128,6 +126,9 @@
     };
 
     #moveCarousel(direction: -1 | 1) {
+      [...this.#carousel.children].forEach(
+        (img) => ((img as HTMLElement).style.visibility = "visible"),
+      );
       if (direction === -1) {
         this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
       } else {
