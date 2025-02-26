@@ -5,9 +5,9 @@ const anim = {
     easing: "linear",
   },
   new: {
-    delay: "0.1s",
+    delay: "0.21s",
     name: "bump-in",
-    duration: "0.07s",
+    duration: "0.2s",
     easing: "linear",
   },
 };
@@ -18,9 +18,9 @@ const animBack = {
     easing: "linear",
   },
   old: {
-    delay: "0.1s",
+    delay: "0.21s",
     name: "bump-in",
-    duration: "0.07s",
+    duration: "0.2s",
     easing: "linear",
   },
 };

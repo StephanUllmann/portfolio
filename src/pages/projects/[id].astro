@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { customTransition } from "../../utils/viewTransition";
 import Tags from "../../components/Tags.astro";
 import WebCarousel from "../../components/ui/WebCarousel.astro";
 
@@ -28,9 +29,9 @@ for (const image of project.data.images) {
     );
 }
 ---
-
+<!-- transition:name="project" transition:animate="fade" -->
 <BaseLayout title={project.data.title}>
-  <div class="center">
+  <section class="center" >
     {
       project.data.images.length > 1 ? (
         <WebCarousel>
@@ -40,7 +41,7 @@ for (const image of project.data.images) {
               alt={image.alt}
               quality={"max"}
               loading={ind > 0 ? "lazy" : "eager"}
-              transition:name={ind === 0 ? project.id + "-image" : undefined}
+              // transition:name={ind === 0 ? project.id + "-image" : undefined}
             />
           ))}
         </WebCarousel>
@@ -51,7 +52,7 @@ for (const image of project.data.images) {
           quality={"max"}
           loading={"eager"}
           class={"fancy-border"}
-          transition:name={project.id + "-image"}
+          // transition:name={project.id + "-image"}
         />
       )
     }
@@ -86,7 +87,7 @@ for (const image of project.data.images) {
       </div>
       <Tags tags={project.data.tags} />
     </div>
-  </div>
+  </section>
 </BaseLayout>
 
 <style>

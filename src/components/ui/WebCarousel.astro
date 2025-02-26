@@ -57,10 +57,10 @@
         this.#startCarousel();
       }
 
-      document.addEventListener(
-        "astro:before-preparation",
-        this.#prepareBackNavigationForViewTransition.bind(this),
-      );
+      // document.addEventListener(
+      //   "astro:before-preparation",
+      //   this.#prepareBackNavigationForViewTransition.bind(this),
+      // );
 
       document.addEventListener(
         "astro:page-load",
@@ -70,10 +70,10 @@
       this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
     }
 
-    #prepareBackNavigationForViewTransition() {
-      this.#carousel.innerHTML = "";
-      this.#carousel.append(this.#firstItem);
-    }
+    // #prepareBackNavigationForViewTransition() {
+    //   this.#carousel.innerHTML = "";
+    //   this.#carousel.append(this.#firstItem);
+    // }
 
     #handleImagesOnPageLoad() {
       [...this.#carousel.children].forEach(
@@ -87,10 +87,10 @@
       this.#btnRight.removeEventListener("click", this.#handleClick);
       this.#wrapper.removeEventListener("mouseenter", this.#stopCarousel);
       this.#wrapper.removeEventListener("mouseleave", this.#startCarousel);
-      document.removeEventListener(
-        "astro:before-preparation",
-        this.#prepareBackNavigationForViewTransition,
-      );
+      // document.removeEventListener(
+      //   "astro:before-preparation",
+      //   this.#prepareBackNavigationForViewTransition,
+      // );
       document.removeEventListener(
         "astro:page-load",
         this.#handleImagesOnPageLoad,

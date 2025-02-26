@@ -23,16 +23,16 @@ const iconmap: { [key: string]: string } = {
   csharp: "csharp",
 };
 ---
+<!-- transition:name={href + "-image"} -->
 
 <li>
-  <a href={`/projects/${href}`} class="card" data-astro-prefetch="hover">
+  <a href={`/projects/${href}`} class="card" >
     <Image
       src={images[project.image.src]()}
       alt={project.image.alt}
       class="fancy-border project-img"
       quality={"high"}
       style={{ animationDelay: 50 * index + "ms" }}
-      transition:name={href + "-image"}
     />
     <div class="content">
       <h2>{project.title}</h2>
