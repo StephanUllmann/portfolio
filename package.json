@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "clean": "rm -fr dist/",
+    "deploy": "astro check && npm run clean  && astro build && rsync -azP --delete dist/ ${PORTFOLIO_DEPLOY}"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
