@@ -29,9 +29,10 @@ for (const image of project.data.images) {
     );
 }
 ---
+
 <!-- transition:name="project" transition:animate="fade" -->
 <BaseLayout title={project.data.title}>
-  <section class="center" >
+  <section class="center">
     {
       project.data.images.length > 1 ? (
         <WebCarousel>
@@ -41,7 +42,7 @@ for (const image of project.data.images) {
               alt={image.alt}
               quality={"max"}
               loading={ind > 0 ? "lazy" : "eager"}
-              // transition:name={ind === 0 ? project.id + "-image" : undefined}
+              transition:name={ind === 0 ? project.id + "-image" : undefined}
             />
           ))}
         </WebCarousel>
@@ -52,7 +53,7 @@ for (const image of project.data.images) {
           quality={"max"}
           loading={"eager"}
           class={"fancy-border"}
-          // transition:name={project.id + "-image"}
+          transition:name={project.id + "-image"}
         />
       )
     }
@@ -92,8 +93,6 @@ for (const image of project.data.images) {
 
 <style>
   .center {
-    margin-block: 3rem;
-    padding: 2vmin;
     img {
       display: block;
       width: 100%;
@@ -107,7 +106,7 @@ for (const image of project.data.images) {
     margin-block: 2rem;
   }
   .tags-wrapper {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     .iconlist {
       gap: 1rem;
       margin-block: 1rem;

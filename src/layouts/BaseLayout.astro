@@ -15,7 +15,7 @@ import Navigation from "../components/Navigation.astro";
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐦‍⬛</text></svg>"
     />
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
     <title>{displayTitle} Stephan Ullmann</title>
   </head>
   <body>
@@ -52,11 +52,6 @@ import Navigation from "../components/Navigation.astro";
 </html>
 
 <style is:global>
-  ::selection {
-    background-color: oklch(from var(--accent) l c h / 50%);
-    color: oklch(from var(--gunmetal) l c h / 75%);
-  }
-
   .noise {
     position: absolute;
     inset: 10px 0;

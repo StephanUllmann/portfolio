@@ -14,7 +14,7 @@
 
 :root {
   color-scheme: light dark;
-  --base: hsl(180, 2%, 12%);
+  --base: hsl(180, 2%, 9%);
   --base-light: hsl(180, 2%, 78%);
   /* --primary: hsl(167, 92%, 19%); */
   --gunmetal: hsla(196, 87%, 12%, 1);
@@ -106,8 +106,11 @@ p,
 li {
   max-width: 80ch;
   text-wrap: pretty;
-  font-size: var(--fs-base);
+  font-size: var(--fs-xs);
   line-height: var(--line-height);
+}
+li {
+  font-size: var(--fs-base);
 }
 hr {
   border: 1px solid var(--accent);
@@ -128,7 +131,6 @@ main {
   border-right: 1px solid;
   border-color: var(--base-light);
   scroll-behavior: smooth;
-  height: 100dvh;
   overflow-y: auto;
   --scrollbar-color-thumb: var(--accent);
   --scrollbar-color-track: var(--primary);
@@ -139,7 +141,6 @@ main {
 }
 
 section {
-  min-height: 99.5dvh;
   align-content: center;
   width: 100%;
   padding-inline: 1rem;
@@ -260,10 +261,8 @@ pre:has(code) {
   &::before {
     --amount: 50%;
     content: "";
-    background-image: radial-gradient(
-        var(--base) var(--amount),
-        transparent 90%
-      ),
+    background-image:
+      radial-gradient(var(--base) var(--amount), transparent 90%),
       linear-gradient(
         var(--deg, 135deg) in oklch,
         var(--primary),
@@ -328,4 +327,9 @@ pre:has(code) {
 
 .carousel.carousel img:not(:nth-of-type(2)) {
   visibility: hidden;
+}
+
+::selection {
+  background-color: oklch(from var(--accent) l c h / 80%);
+  color: oklch(from var(--gunmetal) l c h / 95%);
 }
