@@ -1,0 +1,36 @@
+{
+  "$schema": "../../../.astro/collections/projects.schema.json",
+  "title": "Game of Life",
+  "tags": ["CSS", "TypeScript", "WebComponents", "Lit"],
+  "deployedLink": "https://game-of-life.stephanullmann.dev",
+  "ghLink": "https://github.com/StephanUllmann/game-of-life",
+  "image": {
+    "src": "/src/images/game-of-life/1.jpg",
+    "alt": "TypeScript Nine Men's Morris"
+
+  },
+  "images": [
+    {
+      "src": "/src/images/game-of-life/1.jpg",
+      "alt": "Black player is moving a piece."
+    },
+    {
+      "src": "/src/images/game-of-life/2.jpg",
+      "alt": "TypeScript Nine Men's Morris"
+    },
+    {
+      "src": "/src/images/game-of-life/3.jpg",
+      "alt": "Setting piesces on the board."
+    },
+    {
+      "src": "/src/images/game-of-life/4.jpg",
+      "alt": "The board is filling up. The player's name is displayed on the top."
+    },
+    {
+      "src": "/src/images/game-of-life/5.jpg",
+      "alt": "The white player has a mill. All pieces by player black, that can be removed, are highlighted."
+    }
+  ],
+  "description": "Conway's Game of Life as Lit Web Component",
+  "publishDate": "2025-06-02"
+}

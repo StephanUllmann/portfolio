@@ -43,6 +43,8 @@ for (const image of project.data.images) {
               quality={"max"}
               loading={ind > 0 ? "lazy" : "eager"}
               transition:name={ind === 0 ? project.id + "-image" : undefined}
+              width={image.x ?? 712}
+              height={image.y ?? 358}
             />
           ))}
         </WebCarousel>

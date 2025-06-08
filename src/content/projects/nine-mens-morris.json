@@ -5,32 +5,32 @@
   "deployedLink": "https://morris.stephanullmann.dev",
   "ghLink": "https://github.com/StephanUllmann/mill-game",
   "image": {
-    "src": "/src/images/nine-mens/nine-mens-163812.png",
+    "src": "/src/images/nine-mens/morris.stephanullmann.dev-18-57.jpg",
     "alt": "TypeScript Nine Men's Morris",
     "x": 1913,
     "y": 908
   },
   "images": [
     {
-      "src": "/src/images/nine-mens/nine-mens-163812.png",
+      "src": "/src/images/nine-mens/morris.stephanullmann.dev-18-57.jpg",
       "alt": "TypeScript Nine Men's Morris",
       "x": 1913,
       "y": 908
     },
     {
-      "src": "/src/images/nine-mens/nine-mens-163829.png",
+      "src": "/src/images/nine-mens/morris.stephanullmann.dev-23-59.jpg",
       "alt": "Setting piesces on the board."
     },
     {
-      "src": "/src/images/nine-mens/nine-mens-164348.png",
+      "src": "/src/images/nine-mens/morris.stephanullmann.dev-25-17.jpg",
       "alt": "The board is filling up. The player's name is displayed on the top."
     },
     {
-      "src": "/src/images/nine-mens/nine-mens-164430.png",
+      "src": "/src/images/nine-mens/morris.stephanullmann.dev-27-12.jpg",
       "alt": "The white player has a mill. All pieces by player black, that can be removed, are highlighted."
     },
     {
-      "src": "/src/images/nine-mens/nine-mens-164500.png",
+      "src": "/src/images/nine-mens/morris.stephanullmann.dev-29-18.jpg",
       "alt": "Black player is moving a piece."
     }
   ],
