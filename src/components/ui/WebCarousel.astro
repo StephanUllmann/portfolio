@@ -14,47 +14,47 @@
 
 <script>
   class Carousel extends HTMLElement {
-    #btnLeft;
-    #btnRight;
-    #wrapper;
-    #carousel;
-    #carouselWidth;
-    #itemCount;
-    #totalWidth;
-    #firstItem;
-    #animationFrameId: null | number = null;
-    #delay = 7000;
-    #lastTime: null | number = null;
+    private btnLeft;
+    private btnRight;
+    private wrapper;
+    private carousel;
+    private carouselWidth;
+    private itemCount;
+    private totalWidth;
+    // private firstItem;
+    private animationFrameId: null | number = null;
+    private delay = 7000;
+    private lastTime: null | number = null;
 
     constructor() {
       super();
-      this.#btnLeft = this.querySelector(
+      this.btnLeft = this.querySelector(
         ".scroll-btn-left",
       )! as HTMLButtonElement;
-      this.#btnRight = this.querySelector(
+      this.btnRight = this.querySelector(
         ".scroll-btn-right",
       )! as HTMLButtonElement;
-      this.#wrapper = this.querySelector(".carousel-wrapper")!;
-      this.#carousel = this.querySelector(".carousel")! as HTMLDivElement;
-      this.#carouselWidth = this.#carousel.getBoundingClientRect().width;
-      this.#itemCount = [...this.#carousel.childNodes].filter(
+      this.wrapper = this.querySelector(".carousel-wrapper")!;
+      this.carousel = this.querySelector(".carousel")! as HTMLDivElement;
+      this.carouselWidth = this.carousel.getBoundingClientRect().width;
+      this.itemCount = [...this.carousel.childNodes].filter(
         (c) => c.nodeName === "IMG",
       ).length;
-      this.#firstItem = this.#carousel.children[0];
-      this.#totalWidth = this.#itemCount * this.#carouselWidth;
+      // this.firstItem = this.carousel.children[0];
+      this.totalWidth = this.itemCount * this.carouselWidth;
     }
 
     connectedCallback() {
-      this.#carousel.style.overflowX = "scroll";
-      const doPlay = this.#itemCount > 1;
-      this.#carousel.scrollLeft = 0;
-      this.#btnLeft.addEventListener("click", this.#handleClick);
-      this.#btnRight.addEventListener("click", this.#handleClick);
+      this.carousel.style.overflowX = "scroll";
+      const doPlay = this.itemCount > 1;
+      this.carousel.scrollLeft = 0;
+      this.btnLeft.addEventListener("click", this.handleClick);
+      this.btnRight.addEventListener("click", this.handleClick);
 
       if (doPlay) {
-        this.#wrapper.addEventListener("mouseenter", this.#stopCarousel);
-        this.#wrapper.addEventListener("mouseleave", this.#startCarousel);
-        this.#startCarousel();
+        this.wrapper.addEventListener("mouseenter", this.stopCarousel);
+        this.wrapper.addEventListener("mouseleave", this.handleMouseLeave);
+        this.startCarousel();
       }
 
       // document.addEventListener(
@@ -64,10 +64,10 @@
 
       document.addEventListener(
         "astro:page-load",
-        this.#handleImagesOnPageLoad.bind(this),
+        this.handleImagesOnPageLoad.bind(this),
       );
 
-      this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
+      this.carousel.prepend(this.carousel.children[this.itemCount - 1]);
     }
 
     // #prepareBackNavigationForViewTransition() {
@@ -75,74 +75,77 @@
     //   this.#carousel.append(this.#firstItem);
     // }
 
-    #handleImagesOnPageLoad() {
-      [...this.#carousel.children].forEach(
+    private handleImagesOnPageLoad() {
+      [...this.carousel.children].forEach(
         (img) => ((img as HTMLElement).style.display = "block"),
       );
     }
 
     disconnectedCallback() {
-      this.#stopCarousel();
-      this.#btnLeft.removeEventListener("click", this.#handleClick);
-      this.#btnRight.removeEventListener("click", this.#handleClick);
-      this.#wrapper.removeEventListener("mouseenter", this.#stopCarousel);
-      this.#wrapper.removeEventListener("mouseleave", this.#startCarousel);
-      // document.removeEventListener(
-      //   "astro:before-preparation",
-      //   this.#prepareBackNavigationForViewTransition,
-      // );
+      this.stopCarousel();
+      this.btnLeft.removeEventListener("click", this.handleClick);
+      this.btnRight.removeEventListener("click", this.handleClick);
+      this.wrapper.removeEventListener("mouseenter", this.stopCarousel);
+      this.wrapper.removeEventListener("mouseleave", this.handleMouseLeave);
+
       document.removeEventListener(
         "astro:page-load",
-        this.#handleImagesOnPageLoad,
+        this.handleImagesOnPageLoad,
       );
     }
 
-    #startCarousel = () => {
-      const move = (timestamp: number) => {
-        if (!this.#lastTime) this.#lastTime = timestamp;
+    private handleMouseLeave = () => {
+      console.log(this.lastTime)
+      this.startCarousel()
+    }
 
-        if (timestamp - this.#lastTime! >= this.#delay) {
-          this.#moveCarousel(1);
-          this.#lastTime = timestamp;
+    private startCarousel = () => {
+      const move = (timestamp: number) => {
+        if (!this.lastTime) this.lastTime = timestamp;
+
+        if (timestamp - this.lastTime >= this.delay) {
+          this.moveCarousel(1);
+          this.lastTime = timestamp;
         }
 
-        this.#animationFrameId = requestAnimationFrame(move);
+        this.animationFrameId = requestAnimationFrame(move);
       };
 
-      this.#animationFrameId = requestAnimationFrame(move);
+      this.animationFrameId = requestAnimationFrame(move);
     };
 
-    #stopCarousel = () => {
-      if (this.#animationFrameId) {
-        cancelAnimationFrame(this.#animationFrameId);
-        this.#animationFrameId = null;
-        this.#lastTime = null;
+    private stopCarousel = () => {
+      if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
+        this.lastTime! -= 1000;
       }
     };
-    #handleClick = (e: Event) => {
+
+    private handleClick = (e: Event) => {
       const direction =
         (e.target as HTMLElement).dataset.direction === "left" ? -1 : 1;
-      this.#moveCarousel(direction);
+      this.moveCarousel(direction);
     };
 
-    #moveCarousel(direction: -1 | 1) {
-      [...this.#carousel.children].forEach(
+    private moveCarousel(direction: -1 | 1) {
+      [...this.carousel.children].forEach(
         (img) => ((img as HTMLElement).style.visibility = "visible"),
       );
       if (direction === -1) {
-        this.#carousel.prepend(this.#carousel.children[this.#itemCount - 1]);
+        this.carousel.prepend(this.carousel.children[this.itemCount - 1]);
       } else {
-        this.#carousel.append(this.#carousel.children[0]);
+        this.carousel.append(this.carousel.children[0]);
       }
-      if (this.#carousel.scrollLeft + this.#carouselWidth * direction <= 0)
-        this.#carousel.scrollLeft = this.#totalWidth;
+      if (this.carousel.scrollLeft + this.carouselWidth * direction <= 0)
+        this.carousel.scrollLeft = this.totalWidth;
       else if (
-        this.#totalWidth < this.#carousel.scrollLeft + this.#carouselWidth &&
+        this.totalWidth < this.carousel.scrollLeft + this.carouselWidth &&
         direction > 0
       )
-        this.#carousel.scrollLeft = 0;
+        this.carousel.scrollLeft = 0;
       else {
-        this.#carousel.scrollLeft += this.#carouselWidth * direction;
+        this.carousel.scrollLeft += this.carouselWidth * direction;
       }
     }
   }
@@ -161,7 +164,7 @@
     margin-block: 1rem;
     display: flex;
     gap: 1rem;
-    /* overflow-x: scroll; */
+    cursor: wait;
     overflow-x: clip;
     align-items: center;
     scroll-behavior: smooth;

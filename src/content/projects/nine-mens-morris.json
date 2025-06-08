@@ -2,7 +2,7 @@
   "$schema": "../../../.astro/collections/projects.schema.json",
   "title": "Nine Men's Morris",
   "tags": ["CSS", "TypeScript", "Game", "PWA", "Bun"],
-  "deployedLink": "https://statuesque-cranachan-47fe7f.netlify.app/",
+  "deployedLink": "https://morris.stephanullmann.dev",
   "ghLink": "https://github.com/StephanUllmann/mill-game",
   "image": {
     "src": "/src/images/nine-mens/nine-mens-163812.png",
