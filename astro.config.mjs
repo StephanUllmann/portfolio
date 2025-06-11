@@ -12,4 +12,7 @@ export default defineConfig({
     }),
     icon(),
   ],
+  experimental: {
+    csp: true,
+  },
 });
