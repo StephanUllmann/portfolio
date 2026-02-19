@@ -1,0 +1,98 @@
+<div class="mirror-btn">
+  <video src="" id="camera-input"></video>
+  <button> Button </button>
+</div>
+
+<script>
+  const btn = document.querySelector(".mirror-btn")!;
+  const h = window.innerHeight;
+  const w = window.innerWidth;
+
+  const constraints = {
+    audio: false,
+    video: {
+      width: { width: w, height: h, resizeMode: "crop-and-scale" },
+    },
+  };
+
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then((mediaStream) => {
+      const video = document.getElementById("camera-input");
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = () => {
+        video.play();
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  btn.addEventListener("click", () => {
+    console.log("clicked");
+  });
+</script>
+
+<style>
+  @property --t1 {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.6;
+  }
+
+  @property --t2 {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0.65;
+  }
+
+  .mirror-btn {
+    --w: 11rem;
+    --h: 5rem;
+    --t1: 0.6;
+    --t2: 0.65;
+    clip-path: rect(0px var(--w) var(--h) 0 round 100em);
+    position: relative;
+    display: grid;
+    place-content: center;
+
+    button {
+      cursor: pointer;
+      background-color: hsl(0 0 24 / 0.6);
+      background-image: linear-gradient(
+        120deg in oklch,
+        hsl(0, 100%, 50%, var(--t1)) 10%,
+        hsl(240, 100%, 50%, var(--t2))
+      );
+      overflow: clip;
+      block-size: var(--h);
+      inline-size: var(--w);
+      font-size: 1.5em;
+      padding-block: 1em;
+      padding-inline: 2em;
+      border-radius: 2em;
+      transition:
+        --t1 200ms,
+        --t2 300ms;
+      &:hover {
+        --t1: 0.4;
+        --t2: 0.45;
+      }
+      &:active {
+        --t1: 0.2;
+        --t2: 0.3;
+      }
+    }
+  }
+
+  #camera-input {
+    inline-size: 100%;
+    block-size: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+    /* inset: 25vh 25vw; */
+    z-index: -1;
+    object-fit: cover;
+    /* transform: translate(-50%, -50%); */
+  }
+</style>

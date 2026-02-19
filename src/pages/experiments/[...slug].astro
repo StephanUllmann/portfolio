@@ -1,0 +1,125 @@
+---
+import ExperimentsLayout from "../../layouts/ExperimentsLayout.astro";
+
+const astroDemos = import.meta.glob("./_demos/*/index.astro");
+const htmlDemos = import.meta.glob("./_demos/*/index.html", {
+  query: "?raw",
+  import: "default",
+});
+const cssFiles = import.meta.glob("./_demos/**/*.css", {
+  query: "?raw",
+  import: "default",
+});
+const jsFiles = import.meta.glob("./_demos/**/*.js", {
+  query: "?url",
+  import: "default",
+});
+
+export async function getStaticPaths() {
+  const astroDemos = import.meta.glob("./_demos/*/index.astro");
+  const htmlDemos = import.meta.glob("./_demos/*/index.html", {
+    query: "?raw",
+    import: "default",
+  });
+
+  const allFiles = { ...astroDemos, ...htmlDemos };
+
+  const getSlug = (path: string) =>
+    path.match(/\/_demos\/([^/]+)\//)?.[1] || "";
+
+  const navItems = Object.keys(allFiles).map((path) => {
+    const slug = getSlug(path);
+    return { slug, title: slug.replaceAll("-", " ") };
+  });
+
+  return Object.keys(allFiles).map((path) => {
+    return {
+      params: { slug: getSlug(path) },
+      props: { path, isHtml: path.endsWith(".html"), navItems },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { path, isHtml, navItems } = Astro.props;
+
+let Experiment: any;
+let rawHtml: string | undefined;
+
+if (isHtml) {
+  rawHtml = (await htmlDemos[path]()) as string;
+} else {
+  const module = (await astroDemos[path]()) as { default: any };
+  Experiment = module.default;
+}
+
+const dir = path.substring(0, path.lastIndexOf("/") + 1);
+const cssPath = `${dir}style.css`;
+const jsPath = `${dir}script.js`;
+
+const rawCss = cssFiles[cssPath]
+  ? ((await cssFiles[cssPath]()) as string)
+  : null;
+const jsUrl = jsFiles[jsPath] ? ((await jsFiles[jsPath]()) as string) : null;
+---
+
+<ExperimentsLayout>
+  <nav class="experiments-nav">
+    <ul>
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={`/experiments/${item.slug}`} class="experiments-link">
+              {item.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Experiment: {slug.replaceAll("-", " ")}</h1>
+    <div class="content">
+      {isHtml ? <Fragment set:html={rawHtml} /> : <Experiment />}
+
+      {rawCss && <style is:inline set:html={rawCss} />}
+      {jsUrl && <script is:inline src={jsUrl} defer />}
+    </div>
+  </main>
+</ExperimentsLayout>
+
+<style>
+  main {
+    align-content: unset;
+    border: unset;
+    margin: 2rem;
+
+    .content {
+      display: grid;
+      place-content: center;
+      min-block-size: 80%;
+    }
+  }
+  h1 {
+    text-transform: capitalize;
+  }
+  .experiments-nav {
+    border-inline-end: 2px solid var(--base-light);
+    padding: 3rem;
+
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .experiments-link {
+      text-transform: capitalize;
+      cursor: pointer;
+    }
+  }
+</style>

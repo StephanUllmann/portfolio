@@ -1,12 +1,11 @@
 ---
 import type { GetStaticPaths, ImageMetadata } from "astro";
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { customTransition } from "../../utils/viewTransition";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import Tags from "../../components/Tags.astro";
 import WebCarousel from "../../components/ui/WebCarousel.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/images/**/*.{jpeg,jpg,png,gif.webp}",

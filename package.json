@@ -12,15 +12,15 @@
     "deploy": "astro check && npm run clean  && astro build && rsync -azP --delete dist/ ${PORTFOLIO_DEPLOY}"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "astro": "^5.12.1",
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.17.3",
     "astro-expressive-code": "^0.38.3",
     "astro-icon": "^1.1.5",
     "sharp": "^0.33.5",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1"
   },
   "pnpm": {
