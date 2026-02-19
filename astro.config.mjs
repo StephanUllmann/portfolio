@@ -15,4 +15,9 @@ export default defineConfig({
   experimental: {
     csp: true,
   },
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+  },
 });

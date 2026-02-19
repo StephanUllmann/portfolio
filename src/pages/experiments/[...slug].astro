@@ -6,8 +6,9 @@ const htmlDemos = import.meta.glob("./_demos/*/index.html", {
   query: "?raw",
   import: "default",
 });
+
 const cssFiles = import.meta.glob("./_demos/**/*.css", {
-  query: "?raw",
+  query: "?url",
   import: "default",
 });
 const jsFiles = import.meta.glob("./_demos/**/*.js", {
@@ -21,7 +22,6 @@ export async function getStaticPaths() {
     query: "?raw",
     import: "default",
   });
-
   const allFiles = { ...astroDemos, ...htmlDemos };
 
   const getSlug = (path: string) =>
@@ -47,7 +47,11 @@ let Experiment: any;
 let rawHtml: string | undefined;
 
 if (isHtml) {
-  rawHtml = (await htmlDemos[path]()) as string;
+  const fullHtml = (await htmlDemos[path]()) as string;
+
+  const bodyMatch = fullHtml.match(/<body[^>]*>(.*?)<\/body>/s);
+
+  rawHtml = bodyMatch ? bodyMatch[1] : fullHtml;
 } else {
   const module = (await astroDemos[path]()) as { default: any };
   Experiment = module.default;
@@ -57,7 +61,7 @@ const dir = path.substring(0, path.lastIndexOf("/") + 1);
 const cssPath = `${dir}style.css`;
 const jsPath = `${dir}script.js`;
 
-const rawCss = cssFiles[cssPath]
+const cssUrl = cssFiles[cssPath]
   ? ((await cssFiles[cssPath]()) as string)
   : null;
 const jsUrl = jsFiles[jsPath] ? ((await jsFiles[jsPath]()) as string) : null;
@@ -83,8 +87,8 @@ const jsUrl = jsFiles[jsPath] ? ((await jsFiles[jsPath]()) as string) : null;
     <div class="content">
       {isHtml ? <Fragment set:html={rawHtml} /> : <Experiment />}
 
-      {rawCss && <style is:inline set:html={rawCss} />}
-      {jsUrl && <script is:inline src={jsUrl} defer />}
+      {cssUrl && <link rel="stylesheet" href={cssUrl} />}
+      {jsUrl && <script src={jsUrl} defer />}
     </div>
   </main>
 </ExperimentsLayout>
