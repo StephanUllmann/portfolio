@@ -1,0 +1,45 @@
+.anchor {
+  font-size: 2em;
+  border-radius: 0.5em;
+  anchor-name: --deeply-rooted;
+  width: fit-content;
+}
+
+.ship {
+  anchor-name: --ship;
+  font-size: 2em;
+  position: absolute;
+  pointer-events: none;
+}
+
+.chain {
+  --color: rebeccapurple;
+  display: block;
+  position: absolute;
+  container-type: size;
+  position-anchor: --deeply-rooted;
+
+  top: min(anchor(--deeply-rooted 25%), anchor(--ship 100%));
+  bottom: min(anchor(--deeply-rooted 25%), anchor(--ship 100%));
+  left: min(anchor(--deeply-rooted 50%), anchor(--ship 75%));
+  right: min(anchor(--deeply-rooted 50%), anchor(--ship 75%));
+  --tilt: 1;
+
+  /*border: 2px dashed white;*/
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    min-block-size: 4px;
+    min-inline-size: 4px;
+
+    --direction: calc(atan2(100cqh, 100cqw) * var(--tilt));
+    background-image: linear-gradient(
+      var(--direction),
+      transparent calc(50% - 2px),
+      var(--color) calc(50% - 0.5px),
+      var(--color) calc(50% + 0.5px),
+      transparent calc(50% + 2px)
+    );
+  }
+}
