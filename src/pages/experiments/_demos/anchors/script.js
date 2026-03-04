@@ -8,8 +8,8 @@ const shipWidth = ship.clientWidth / 2;
 let currTilt = 1;
 
 window.addEventListener("mousemove", (e) => {
-  ship.style.top = e.clientY - shipHeight + "px";
-  ship.style.left = e.clientX - shipWidth + "px";
+  ship.style.top = e.clientY - shipHeight - 20 + "px";
+  ship.style.left = e.clientX - shipWidth + 20 + "px";
 
   const aRect = anchor.getBoundingClientRect();
   const sRect = ship.getBoundingClientRect();

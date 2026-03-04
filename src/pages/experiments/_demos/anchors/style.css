@@ -32,14 +32,19 @@
     inset: 0;
     min-block-size: 4px;
     min-inline-size: 4px;
+    /*border-radius: 1em;*/
 
     --direction: calc(atan2(100cqh, 100cqw) * var(--tilt));
+
+    --thickness1: clamp(0.5px, calc(5px / (hypot(1cqmin, 1cqmax) / 1px)), 2px);
+    --thickness2: clamp(1.5px, calc(5px / (hypot(1cqmin, 1cqmax) / 1px)), 3px);
+
     background-image: linear-gradient(
       var(--direction),
-      transparent calc(50% - 2px),
-      var(--color) calc(50% - 0.5px),
-      var(--color) calc(50% + 0.5px),
-      transparent calc(50% + 2px)
+      transparent calc(50% - var(--thickness2)),
+      var(--color) calc(50% - var(--thickness1)),
+      var(--color) calc(50% + var(--thickness1)),
+      transparent calc(50% + var(--thickness2))
     );
   }
 }
